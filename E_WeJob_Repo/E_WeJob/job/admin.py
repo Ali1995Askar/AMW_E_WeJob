@@ -10,17 +10,19 @@ from .forms import JobForm
 class CustomJobAdmin(admin.ModelAdmin):
 
     form = JobForm
-    ordering = ("requiredEducationLevel",)
+    ordering = ("date",)
     list_display = (
         "company",
         "requiredEducationLevel",
         "title",
         "requiredExperienceYears",
         "salary",
+        "date",
     )
     list_display_links = (
         "company",
         "title",
+        "date",
     )
     list_filter = (
         "company",

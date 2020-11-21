@@ -58,5 +58,15 @@ class JobListView(generic.ListView):
     model = Job
 
 
+class MyJoBView(generic.ListView):
+    model = Job
+    template_name = "job/job_dashborad.html"
+
+    def get_queryset(self):
+        queryset = super(MyJoBView, self).get_queryset()
+        queryset = queryset.filter(company=self.request.user)
+        return queryset
+
+
 # class MyJobsView(generic.ListView):
 #     model = Job

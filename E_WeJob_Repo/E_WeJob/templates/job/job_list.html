@@ -68,9 +68,9 @@ jobs-list
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         success: function (result) {
-            for (let i = 0; i < result.count; i++) {
+            for (let i = 0; i < result.length; i++) {
                 $('#RequiredEducationLeve_id').append(
-                    `<option value="${result.results[i].id}"> ${result.results[i].diplomaTitle} </option>`);
+                    `<option value="${result[i].id}"> ${result[i].diplomaTitle} </option>`);
             }
         }
     });

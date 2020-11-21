@@ -31,6 +31,7 @@ class Job(models.Model):
     )
     requiredExperienceYears = models.IntegerField(_(" required experience years"))
     salary = models.IntegerField(_("salary"))
+    date = models.DateField(auto_now=True)
 
     def __str__(self):
         return str(self.title) + " by " + str(self.company)

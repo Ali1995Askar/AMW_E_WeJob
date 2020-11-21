@@ -1,24 +1,3 @@
-<!-- <a href="{% url 'index' %}">home</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="{% url 'about-us' %}">About us</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="{% url 'contact-us' %}">Contact us</a>&nbsp;&nbsp;&nbsp;&nbsp;
-
-<a href="{% url 'user:login' %}">login</a>&nbsp;&nbsp;&nbsp;&nbsp;
-
-<a href="{% url 'user:company-sign-up' %}">company signup</a>&nbsp;&nbsp;&nbsp;&nbsp;
-
-<a href="{% url 'user:candidate-sign-up' %}">candidate signup</a>&nbsp;&nbsp;&nbsp;&nbsp;
-
-<a href="{% url 'user:logout' %}">logout</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span>user : {{user}}</span>
-<hr>
-<a href="{% url 'job:all' %}">all jobs</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="{% url 'job:create' %}">create job</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<hr>
-<a href="{% url 'diploma:all' %}">all diplomas</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="{% url 'diploma:create' %}">create diploma</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<hr> -->
 {% load static %}
 <header class="site-header mo-left header fullwidth">
     <!-- main header -->
@@ -39,15 +18,7 @@
                     <span></span>
                 </button>
                 <!-- extra nav -->
-                <div class="extra-nav">
-                    <div class="extra-cell">
-                        {% if user.is_authenticated %}
-                        <a href="{% url 'user:logout' %}" class="site-button"><i class="fa fa-unlock"></i> logout</a>
-                        {% else %}
-                        <a href="{% url 'user:login' %}" class="site-button"><i class="fa fa-lock"></i> login</a>
-                        {% endif %}
-                    </div>
-                </div>
+
                 <!-- Quik search -->
                 <div class="dez-quik-search bg-primary">
                     <form action="#">
@@ -58,10 +29,7 @@
                 <!-- main nav -->
                 <div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
                     <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="{% url 'index' %}">Home </a>
 
-                        </li>
                         <li>
                             <a href="#">For Candidates <i class="fa fa-chevron-down"></i></a>
                             <ul class="sub-menu">
@@ -80,11 +48,12 @@
                         <li>
                             <a href="#">For Companies <i class="fa fa-chevron-down"></i></a>
                             <ul class="sub-menu">
-                                <li><a href="browse-job.html" class="dez-page">My Jobs</a></li>
+
+
                                 <li><a href="{% url 'job:create' %}" class="dez-page">Post a Job</a></li>
 
                                 {% if user.is_authenticated %}
-                                <li><a href="{% url 'user:detail' user.pk %}" class="dez-page">My Profile</a></li>
+                                <li><a href="{% url 'job:my-jobs' user.username %}" class="dez-page">My Jobs</a></li>
 
                                 {% endif %}
 
@@ -103,13 +72,26 @@
                                 {% if user.is_authenticated %}
                                 {{  user.username}}
                                 {% else %}
-                                Signup
+                                Account
                                 {% endif %}
                                 <i class="fa fa-user"></i></a>
 
                             <ul class="sub-menu">
                                 <li><a href="{% url 'user:company-sign-up' %}" class="dez-page">As Company</a></li>
                                 <li><a href="{% url 'user:candidate-sign-up' %}" class="dez-page">As Candidate</a></li>
+                                {% if user.is_authenticated %}
+                                <li>
+                                    <a href="{% url 'user:logout' %}"><i class="fa fa-unlock"></i>
+                                        logout</a>
+                                </li>
+                                {% else %}
+                                <li>
+                                    <a href="{% url 'user:login' %}"><i class="fa fa-lock "></i> login</a>
+
+                                </li>
+                                {% endif %}
+                                <li><i class="fa fa-lock mx-2"></i>David Copperfield
+                                </li>
 
                             </ul>
                         </li>
@@ -120,3 +102,16 @@
     </div>
     <!-- main header END -->
 </header>
+
+
+{% comment %}
+<div class="extra-nav">
+    <div class="extra-cell">
+        {% if user.is_authenticated %}
+        <a href="{% url 'user:logout' %}" class="site-button"><i class="fa fa-unlock"></i> logout</a>
+        {% else %}
+        <a href="{% url 'user:login' %}" class="site-button"><i class="fa fa-lock"></i> login</a>
+        {% endif %}
+    </div>
+</div>
+{% endcomment %}

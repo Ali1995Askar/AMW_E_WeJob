@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}
+myjobs-dashboard
+{% endblock %}
+{% block content %}
+
+{% include "partials/inner_page_banner.html" with title="Jobs Dashboard"  root=user.username child="My Jobs"%}
+<section class='mytablelist mx-auto my-5 p-2'>
+
+    <div class="btn-add sticky-top">
+        <a href="{% url 'job:create' %}" class="site-button radius-xl fa fa-plus"><span></span></a>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="top_page py-2">
+                            <h2>My jobs list</h2>
+                        </div>
+                        <div class="table-responsive my-3">
+                            <table class="table table-hover my-3 text-center">
+                                <thead>
+                                    <tr>
+                                        <th># job</th>
+                                        <th>title</th>
+                                        <th>salary</th>
+                                        <th>Education Level</th>
+                                        <th>Experience Years</th>
+                                        <th>detail</th>
+                                        <th>update</th>
+                                        <th>delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for job in object_list %}
+                                    <tr>
+                                        <td><strong>{{job.id}}</strong></td>
+                                        <td>{{job.title}}</td>
+                                        <td>{{job.salary}}</td>
+                                        <td>{{job.requiredEducationLevel}}</td>
+                                        <td>{{job.requiredExperienceYears}}</td>
+                                        <td>
+                                            <a href={% url 'job:detail' job.id %}>
+                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href={% url 'job:update' job.id %}>
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href={% url 'job:delete' job.id %}>
+                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
