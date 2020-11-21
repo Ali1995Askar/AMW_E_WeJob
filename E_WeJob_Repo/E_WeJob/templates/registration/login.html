@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+login
+{% endblock %}
+{% block content %}
+
+
+
+<!-- Content -->
+<div class="page-content bg-white">
+    {% include "partials/inner_page_banner.html" with title="User Login" root="home" child="login"%}
+    <!-- inner page banner -->
+
+    <!-- inner page banner END -->
+    <!-- contact area -->
+    <div class="section-full content-inner-2 shop-account">
+        <!-- Product -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h3 class="font-weight-700 m-t0 m-b20">Login Your Account</h3>
+                </div>
+            </div>
+            <div>
+                <div class="max-w500 m-auto m-b30">
+                    <div class="p-a30 border-1 seth">
+                        <div class="tab-content nav">
+                            <form method="POST" id="login" class="tab-pane active col-12 p-a0 ">
+                                {% csrf_token %}
+                                <h4 class="font-weight-700">LOGIN</h4>
+                                <p class="font-weight-600">If you have an account with us, please log in.</p>
+                                <div class="form-group">
+                                    <label class="font-weight-700">{{form.username.label}} *</label>
+                                    {{form.username}}
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-700">{{form.password.label}} *</label>
+                                    {{form.password}}
+                                    <div class="text-left">
+                                        <button type="submit" class="site-button button-lg">Submit</button>
+                                        {% if form.errors %}
+                                        <small class="form-text text-muted ">Your username and password didn't
+                                            match.
+                                            Please try again.</small>
+                                        {% endif %}
+                                    </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Product END -->
+    </div>
+    <!-- contact area  END -->
+</div>
+<!-- Content END-->
+
+{% endblock content %}

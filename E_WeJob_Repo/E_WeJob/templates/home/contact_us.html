@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}
+contact-us
+{% endblock %}
+{% block content %}
+<!-- contact area -->
+<div class="page-content bg-white">
+    {% include "partials/inner_page_banner.html" with title="Contact Us" root="home" child="contact us"%}
+    <div class="section-full content-inner bg-white contact-style-1">
+        <div class="container">
+            <div class="row">
+                <!-- right part start -->
+                <div class="col-lg-4 col-md-6 d-lg-flex d-md-flex">
+                    <div class="p-a30 border m-b30 contact-area border-1 align-self-stretch radius-sm">
+                        <h4 class="m-b10">Quick Contact</h4>
+                        <p>If you have any questions simply use the following contact details.</p>
+                        <ul class="no-margin">
+                            <li class="icon-bx-wraper left m-b30">
+                                <div class="icon-bx-xs border-1"> <a href="#" class="icon-cell"><i
+                                            class="ti-location-pin"></i></a> </div>
+                                <div class="icon-content">
+                                    <h6 class="text-uppercase m-tb0 dez-tilte">Address:</h6>
+                                    <p>Syria-lattakia-makha_almalki</p>
+                                </div>
+                            </li>
+                            <li class="icon-bx-wraper left  m-b30">
+                                <div class="icon-bx-xs border-1"> <a href="#" class="icon-cell"><i
+                                            class="ti-email"></i></a>
+                                </div>
+                                <div class="icon-content">
+                                    <h6 class="text-uppercase m-tb0 dez-tilte">Email:</h6>
+                                    <p>ali1995askar@gmail.com/p>
+                                </div>
+                            </li>
+                            <li class="icon-bx-wraper left">
+                                <div class="icon-bx-xs border-1"> <a href="#" class="icon-cell"><i
+                                            class="ti-mobile"></i></a> </div>
+                                <div class="icon-content">
+                                    <h6 class="text-uppercase m-tb0 dez-tilte">PHONE</h6>
+                                    <p>+963 936771771</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="m-t20">
+                            <ul class="dez-social-icon dez-social-icon-lg">
+                                <li><a href="javascript:void(0);" class="fa fa-facebook bg-primary"></a></li>
+                                <li><a href="javascript:void(0);" class="fa fa-twitter bg-primary"></a></li>
+                                <li><a href="javascript:void(0);" class="fa fa-linkedin bg-primary"></a></li>
+                                <li><a href="javascript:void(0);" class="fa fa-pinterest-p bg-primary"></a></li>
+                                <li><a href="javascript:void(0);" class="fa fa-google-plus bg-primary"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- right part END -->
+                <!-- Left part start -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="p-a30 m-b30 radius-sm bg-gray clearfix">
+                        <h4>Send Message Us</h4>
+                        <div class="dzFormMsg"></div>
+                        <form method="POST" class="dzForm">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        {{form.subject}}
+                                        {% if form.subject.errors %}
+                                        {% for error in form.subject.errors %}
+                                        <li>
+                                            <small class="form-text text-muted ">{{ error }}</small>
+                                        </li>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        {{form.message}}
+                                        {% if form.message.errors %}
+                                        {% for error in form.message.errors %}
+                                        <li>
+                                            <small class="form-text text-muted ">{{ error }}</small>
+                                        </li>
+                                        {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12">
+                                    <button name="submit" type="submit" value="Submit" class="site-button ">
+                                        <span>Submit</span> </button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <!-- Left part END -->
+                <div class="col-lg-4 col-md-12 d-lg-flex m-b30">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d227748.3825624477!2d75.65046970649679!3d26.88544791796718!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396c4adf4c57e281%3A0xce1c63a0cf22e09!2sJaipur%2C+Rajasthan!5e0!3m2!1sen!2sin!4v1500819483219"
+                        class="align-self-stretch radius-sm" style="border:0; width:100%; min-height:350px;"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- contact area  END -->
+
+{% endblock content %}

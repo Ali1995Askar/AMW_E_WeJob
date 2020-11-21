@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}
+job-delete
+{% endblock %}
+{% block content %}
+job_delete_confirm
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Yes" /> <br>
+    <a href="{% url 'job:all' %}">back to all products</a>
+</form>
+{% endblock content %}

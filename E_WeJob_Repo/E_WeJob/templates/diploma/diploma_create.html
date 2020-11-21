@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+post-job
+{% endblock %}
+{% block content %}
+
+<div class="page-content bg-white">
+    <!-- inner page banner -->
+    {% include "partials/inner_page_banner.html" with title="Add Diploma" root="home" child="Diploma Form"%}
+
+    <!-- inner page banner END -->
+    <!-- contact area -->
+    <div class="section-full content-inner shop-account">
+        <!-- Product -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h3 class="font-weight-700 m-t0 m-b20">Add Diploma </h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 m-b30">
+                    <div class="p-a30 border-1  max-w500 m-auto">
+                        <div class="tab-content">
+                            <form id="login" class="tab-pane active" method="post">
+                                {% csrf_token %}
+                                <h4 class="font-weight-700">Diploma Information</h4>
+                                <div class="form-group">
+                                    <label class="font-weight-700">{{form.diplomaTitle.label}} *</label>
+                                    {{form.diplomaTitle}}
+                                </div>
+                                <div class="text-left">
+                                    <button type="submit" class="site-button button-lg">ADD</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Product END -->
+    </div>
+    <!-- contact area  END -->
+</div>
+
+
+{% endblock content %}

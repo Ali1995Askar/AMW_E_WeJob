@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+company-signup
+{% endblock %}
+{% block content %}
+<div class="page-content bg-white">
+    <!-- inner page banner -->
+    {% include "partials/inner_page_banner.html" with title="Company Register" root="home" child="company signup"%}
+
+    <!-- inner page banner END -->
+    <!-- contact area -->
+    <div class="section-full content-inner shop-account">
+        <!-- Product -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h3 class="font-weight-700 m-t0 m-b20">Create Comapny Account</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 m-b30">
+                    <div class="p-a30 border-1  max-w500 m-auto">
+                        <div class="tab-content">
+                            <form id="login" class="tab-pane active" method="post">
+                                {% csrf_token %}
+                                <h4 class="font-weight-700">Account Information</h4>
+                                <p class="font-weight-600">please Enter your account information</p>
+                                <div class="form-group">
+                                    <label class="font-weight-700">{{form.username.label}} *</label>
+                                    {{form.username}}
+                                    {% if form.username.errors %}
+                                    {% for error in form.username.errors %}
+                                    <li>
+                                        <small class="form-text text-muted ">{{ error }}</small>
+                                    </li>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="font-weight-700">{{form.email.label}} *</label>
+                                    {{form.email}}
+                                    {% if form.email.errors %}
+                                    {% for error in form.email.errors %}
+                                    <li>
+                                        <small class="form-text text-muted ">{{ error }}</small>
+                                    </li>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-700">{{form.password1.label}} *</label>
+
+                                    {{form.password1}}
+                                    {% if form.password1.errors %}
+                                    {% for error in form.password1.errors %}
+                                    <li>
+                                        <small class="form-text text-muted ">{{ error }}</small>
+                                    </li>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="font-weight-700">{{form.password2.label}} *</label>
+
+                                    {{form.password2}}
+                                    {% if form.password2.errors %}
+                                    {% for error in form.password2.errors %}
+                                    <li>
+                                        <small class="form-text text-muted ">{{ error }}</small>
+                                    </li>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+
+
+
+                                <h4 class="font-weight-700">Company Information</h4>
+                                <p class="font-weight-600">please Enter your company information</p>
+
+                                <div class="form-group">
+                                    <label class="font-weight-700">{{company_profile_form.cName.label}} *</label>
+
+                                    {{company_profile_form.cName}}
+                                    {% if company_profile_form.cName.errors %}
+                                    {% for error in company_profile_form.cName.errors %}
+                                    <li>
+                                        <small class="form-text text-muted ">{{ error }}</small>
+                                    </li>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-weight-700">{{company_profile_form.tel.label}} *</label>
+
+                                    {{company_profile_form.tel}}
+                                    {% if company_profile_form.tel.errors %}
+                                    {% for error in company_profile_form.tel.errors %}
+                                    <li>
+                                        <small class="form-text text-muted ">{{ error }}</small>
+                                    </li>
+                                    {% endfor %}
+                                    {% endif %}
+                                </div>
+                                <div class="text-left">
+                                    <button type="submit"
+                                        class="site-button button-lg outline outline-2">Signup</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Product END -->
+    </div>
+    <!-- contact area  END -->
+</div>
+
+
+{% endblock content %}

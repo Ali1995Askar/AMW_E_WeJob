@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}
+jobs-list
+{% endblock %}
+{% block content %}
+<h1 id="test">fdf</h1>
+<div class="content-block">
+    {% include "partials/inner_page_banner.html" with title="Brouse Jobs" root="home" child="List of jobs "%}
+    <div class="section-full bg-white browse-job content-inner-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 col-lg-8">
+                    <h5 class="widget-title font-weight-700 text-uppercase">Recent Jobs</h5>
+                    <ul class="post-job-bx">
+                        {% for job in object_list %}
+                        {% include "partials/job_card.html" %}
+                        {% endfor %}
+                    </ul>
+                    <div class="pagination-bx m-t30">
+                        <ul class="pagination">
+                            <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4">
+                    <div class="sticky-top">
+                        <div class="clearfix m-b40">
+                            <h6 class="widget-title font-weight-700 text-uppercase">Experience Years</h6>
+                            <div class="">
+                                <input type="number" id="RequiredExperienceYears_id" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="clearfix m-b20">
+                            <h6 class="widget-title font-weight-700 m-t0 text-uppercase">Education Level</h6>
+
+                            <select id="RequiredEducationLeve_id" class="form-control">
+
+                            </select>
+                        </div>
+
+                        <div class="clearfix m-t30 ">
+                            <span class="input-group-btn">
+                                <button name="filter" value="filter" type="submit" id="filter_btn_id"
+                                    class="site-button radius-xl">Filter</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<br>
+
+{% endblock content %}
+
+{% block extra_js %}
+<script>
+    $.ajax({
+        url: "{% url 'diploma_api:diploma-list' %}",
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (result) {
+            for (let i = 0; i < result.count; i++) {
+                $('#RequiredEducationLeve_id').append(
+                    `<option value="${result.results[i].id}"> ${result.results[i].diplomaTitle} </option>`);
+            }
+        }
+    });
+</script>
+
+{% endblock extra_js%}
+
+{% comment %}
+{{job}}&nbsp;&nbsp; |&nbsp;&nbsp;<a href="{% url 'job:update' job.id %}">update</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;<a href="{% url 'job:delete'  job.id %}">delete</a>
+{% endcomment %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}
+diolomas-list
+{% endblock %}
+{% block content %}
+{% for diploma in object_list %}
+{{diploma}}&nbsp;&nbsp; |&nbsp;&nbsp;<a href="{% url 'diploma:update' diploma.id %}">update</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;<a href="{% url 'diploma:delete'  diploma.id %}">delete</a>
+<br>
+{% endfor %}
+{% endblock content %}

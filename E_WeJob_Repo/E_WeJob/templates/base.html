@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="robots" content="" />
+    <meta name="description" content="JobBoard - HTML Template" />
+    <meta property="og:title" content="JobBoard - HTML Template" />
+    <meta property="og:description" content="JobBoard - HTML Template" />
+    <meta property="og:image" content="JobBoard - HTML Template" />
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.png' %}" />
+    <title>
+        {% block title %}
+        E_WeJob
+        {% endblock %}
+    </title>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/plugins.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/templete.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/skin/skin-1.css' %}" />
+
+    <link rel="stylesheet" type="text/css"
+        href="{% static 'plugins/datepicker/css/bootstrap-datetimepicker.min.css' %}" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/revolution/revolution/css/layers.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/revolution/revolution/css/settings.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/revolution/revolution/css/navigation.css' %}" />
+
+
+
+    {% block extra_css %} {# Override this in templates to add extra stylesheets #} {% endblock %}
+</head>
+
+<body id="bg">
+    <div id="loading-area"></div>
+    <div class="page-wraper">
+        <!-- Header -->
+        {% include 'partials/header.html' %}
+        <!-- Header End -->
+
+        <br>
+        <!-- Main content -->
+        {% block content %}{% endblock %}
+        <!-- Main content End -->
+        <br>
+        <!-- Footer -->
+        {% include 'partials/footer.html' %}
+        <!-- Footer End -->
+        <button class="scroltop fa fa-arrow-up"></button>
+    </div>
+    {# Global javascript #}
+    <!-- JAVASCRIPT FILES ========================================= -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'plugins/wow/wow.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap-select/bootstrap-select.min.js' %}"></script>
+
+
+    <script src="{% static 'plugins/bootstrap-touchspin/jquery.bootstrap-touchspin.js' %}"></script>
+    <script src="{% static 'plugins/magnific-popup/magnific-popup.js' %}"></script>
+
+
+    <script src="{% static 'plugins/counter/waypoints-min.js' %}"></script>
+    <script src="{% static 'plugins/counter/counterup.min.js' %}"></script>
+
+    <script src="{% static 'plugins/imagesloaded/imagesloaded.js' %}"></script>
+    <script src="{% static 'plugins/masonry/masonry-3.1.4.js' %}"></script>
+
+    <script src="{% static 'plugins/masonry/masonry.filter.js' %}"></script>
+
+    <script src="{% static 'plugins/owl-carousel/owl.carousel.js' %}"></script>
+    <script src="{% static 'plugins/rangeslider/rangeslider.js' %}"></script>
+
+    <script src="{% static 'js/custom.js' %}"></script>
+
+    <script src="{% static 'js/dz.carousel.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+
+    <script src="{% static 'js/recaptcha/api.js' %}"></script>
+    <script src="{% static 'js/dz.ajax.js' %}"></script>
+
+    <script src="{% static 'plugins/paroller/skrollr.min.js' %}"></script>
+
+    {% block extra_js %}
+    {# Override this in templates to add extra javascript #}
+    {% endblock %}
+</body>
+
+</html>

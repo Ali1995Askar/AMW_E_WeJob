@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}
+logout
+{% endblock %}
+{% block content %}
+
+
+
+<!-- Content -->
+<div class="page-content bg-white">
+    {% include "partials/inner_page_banner.html" with title="User Logout" root="home" child="logout"%}
+    <!-- inner page banner -->
+
+    <!-- inner page banner END -->
+    <!-- contact area -->
+    <div class="section-full content-inner-2 shop-account">
+        <!-- Product -->
+        <div class="container">
+            <h3>you loggedout</h3>
+            <h4>good bye</h4>
+        </div>
+        <!-- Product END -->
+    </div>
+    <!-- contact area  END -->
+</div>
+<!-- Content END-->
+
+{% endblock content %}
