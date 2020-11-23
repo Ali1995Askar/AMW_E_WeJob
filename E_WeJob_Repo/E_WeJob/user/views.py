@@ -4,35 +4,50 @@ from django.contrib.auth import get_user_model, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
-from django.views.generic import DetailView, RedirectView, UpdateView, CreateView
 from django.http import HttpResponseRedirect
-from django.contrib.auth import login, logout
-from django.views.generic import (
-    ListView,
-    CreateView,
-    DeleteView,
-    UpdateView,
-    DetailView,
-)
-from .forms import (
-    UserCreationForm,
-    CompanyProfileForm,
-    CandidateProfileForm,
-    MessageForm,
-)
+from django.contrib.auth import login
+from django.views import generic
+from django.utils.decorators import method_decorator
+
+from utils.decorators import is_candidate
+from . import forms
 from .models import CompanyProfile, CandidateProfile, Message
+from job.models import Job
 
 User = get_user_model()
 
 
-class UserDetailView(LoginRequiredMixin, DetailView):
+@method_decorator(is_candidate, name="dispatch")
+class UserDetailView(LoginRequiredMixin, generic.DetailView):
 
     model = User
     slug_field = "pk"
     slug_url_kwarg = "pk"
 
+    def get_suitable_jobs(self, **kwargs):
+        instance = self.get_object()
+        EducationLevel = instance.diplomas.all()
+        ExperienceYears = instance.profile.experienceYears
+        jobs = Job.objects.all()
+        suitable_jobs = []
 
-class UserUpdateView(LoginRequiredMixin, UpdateView):
+        for job in list(jobs):
+            if job.requiredExperienceYears <= ExperienceYears:
+                diplomas = instance.diplomas.filter(
+                    diplomaTitle=job.requiredEducationLevel
+                )
+
+                if diplomas:
+                    suitable_jobs += [job]
+        return suitable_jobs
+
+    def get_context_data(self, **kwargs):
+        context = super(UserDetailView, self).get_context_data(**kwargs)
+        context["suitable_jobs"] = self.get_suitable_jobs()
+        return context
+
+
+class UserUpdateView(LoginRequiredMixin, generic.UpdateView):
 
     model = User
     fields = ["username", "email"]
@@ -50,24 +65,31 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class UserRedirectView(LoginRequiredMixin, RedirectView):
+class UserRedirectView(LoginRequiredMixin, generic.RedirectView):
 
     permanent = False
 
     def get_redirect_url(self):
-        return reverse("user:detail", kwargs={"pk": self.request.user.pk})
+        if self.request.user.is_candidate:
+            return reverse("user:detail", kwargs={"pk": self.request.user.pk})
+        if self.request.user.is_company:
+            return reverse(
+                "user:redirect", kwargs={"username": self.request.user.username}
+            )
+        if self.request.user.is_superuser:
+            return reverse("admin:index")
 
 
-class CompanyCreationView(CreateView):
+class CompanyCreationView(generic.CreateView):
     template_name = "registration/company_sign_up.html"
-    form_class = UserCreationForm
+    form_class = forms.UserCreationForm
 
     def get_success_url(self):
         return reverse("user:detail", kwargs={"pk": self.request.user.pk})
 
     def get_context_data(self, **kwargs):
         context = super(CompanyCreationView, self).get_context_data(**kwargs)
-        context["company_profile_form"] = CompanyProfileForm
+        context["company_profile_form"] = forms.CompanyProfileForm
         return context
 
     def form_valid(self, form):
@@ -84,16 +106,16 @@ class CompanyCreationView(CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-class CandidateCreationView(CreateView):
+class CandidateCreationView(generic.CreateView):
     template_name = "registration/candidate_sign_up.html"
-    form_class = UserCreationForm
+    form_class = forms.UserCreationForm
 
     def get_success_url(self):
         return reverse("user:detail", kwargs={"pk": self.request.user.pk})
 
     def get_context_data(self, **kwargs):
         context = super(CandidateCreationView, self).get_context_data(**kwargs)
-        context["candidate_profile_form"] = CandidateProfileForm
+        context["candidate_profile_form"] = forms.CandidateProfileForm
 
         return context
 
@@ -114,10 +136,10 @@ class CandidateCreationView(CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-class UserContactView(LoginRequiredMixin, CreateView):
+class UserContactView(LoginRequiredMixin, generic.CreateView):
     login_required = True
     model = Message
-    form_class = MessageForm
+    form_class = forms.MessageForm
 
     def get_success_url(self):
         return reverse("index")

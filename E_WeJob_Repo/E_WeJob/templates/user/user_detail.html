@@ -4,6 +4,7 @@
 user-detail
 {% endblock %}
 {% block content %}
+{% include "partials/inner_page_banner.html" with title="My Profile"  root=user.username child="profile"%}
 <div class="content-block">
     <div class="section-full bg-white browse-job content-inner-2">
         <div class="container">
@@ -13,31 +14,103 @@ user-detail
                         <li>
                             <a href="#">
                                 <div class="d-flex m-b30">
+
                                     <div class="job-post-company">
-                                        <span><img src="{% static 'images/testimonials/pic1.jpg' %}" /></span>
+                                        {% if user.is_company %}
+                                        <span>
+                                            <i class="fa fa-building fa-4x"></i></span>
+                                        {% else %}
+                                        <span>
+                                            <i class="fa fa-user fa-4x"></i></span>
+                                        {% endif %}
                                     </div>
+
                                     <div class="job-post-info">
                                         <h4>{{object.username}}</h4>
                                         <ul>
-                                            <li><i class="fa fa-map-marker"></i>{{object.profile}}</li>
-                                            <li><i class="fa fa-mobile"></i> {{object.type}}</li>
+
+                                            {% if user.is_company %}
+                                            <li><i class="fa fa-map-marker"></i>{{object.profile.cName}}</li>
+                                            {% else %}
+
+                                            <li><i class="fa fa-map-marker"></i>{{object.profile.fullName}}</li>
+
+                                            <li><i class="fa fa-clock-o"></i>{{user.profile.experienceYears}} years of
+                                                experience</li>
+
+                                            {% endif %}
+                                            <li><i class="fa fa-mobile"></i>{{object.profile.tel}}</li>
                                             <li><i class="fa fa-envelope-open"></i>{{user.email}}</li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="d-flex">
-                                    <div class="job-time mr-auto">
-                                        <span>Javascript</span>
+                                {% if user.is_company %}
+
+                                <a href="{% url 'job:my-jobs' user.username %}">
+                                    <div class="d-flex">
+
+                                        <div class="job-time mr-auto">
+
+                                            <h5>My Jobs</h5>
+                                            <span>
+                                                Jobs Dashboard
+                                            </span>
+
+
+                                        </div>
                                     </div>
 
+                                </a>
+
+                                {% else %}
+                                <h5><i class="fa fa-graduation-cap"> {{suitable_job}} </i>Diplomas</h5>
+                                <div class="d-flex">
+
+                                    <div class="job-time mr-auto">
+                                        {% for diploma in object.diplomas.all%}
+
+                                        <span>
+                                            <i class="fa fa-graduation-cap"></i>
+                                            {{diploma}}
+                                        </span>
+
+                                        {% endfor %}
+                                    </div>
                                 </div>
-                                <span class="post-like fa fa-heart-o"></span>
+                                <a href="{% url 'job:my-jobs' user.username %}">
+                                    <div class="d-flex">
+
+                                        <div class="job-time mr-auto">
+
+                                            <h5><i class="fa fa-check-circle"> {{suitable_job}} </i>Suitable Jobs</h5>
+                                            {% for suitable_job in suitable_jobs%}
+
+                                            <span>
+                                                <i class="fa fa-check-circle">{{suitable_job}} </i>
+                                                - {{suitable_job.salary}}
+                                                <i class="fa fa-usd"></i>
+
+                                            </span>
+
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+
+                                </a>
+
+                                {% endif %}
+                                <span>
+                                    {% if user.is_company %}
+                                    <i class="post-like fa fa-building"></i>
+                                    {% else %}
+                                    <i class="post-like fa fa-id-card-o"></i>
+
+                                    {% endif %}
+                                </span>
                             </a>
+
                         </li>
-                        <h1>user details</h1>
-                        {{object.username}}
-                        <br>
-                        {{object.email}}
                     </div>
                 </div>
             </div>

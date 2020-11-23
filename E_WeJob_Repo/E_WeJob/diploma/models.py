@@ -9,10 +9,11 @@ User = get_user_model()
 
 class Diploma(models.Model):
 
-    candidate = models.ForeignKey(
+    user = models.ForeignKey(
         User,
-        verbose_name=_("candidate"),
-        related_name="diploma",
+        verbose_name=_("user"),
+        related_name="diplomas",
+        related_query_name="diplomas",
         on_delete=models.CASCADE,
     )
 

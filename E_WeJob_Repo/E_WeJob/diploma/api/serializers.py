@@ -5,7 +5,7 @@ from ..models import Diploma
 
 
 class DiplomaSerializer(serializers.ModelSerializer):
-    candidate = UserSerializer(read_only=True)
+    user = UserSerializer(read_only=True)
     depth = 1
 
     class Meta:
@@ -13,5 +13,5 @@ class DiplomaSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "diplomaTitle",
-            "candidate",
+            "user",
         ]

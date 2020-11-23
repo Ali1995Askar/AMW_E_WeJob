@@ -9,6 +9,8 @@ from django.utils.decorators import method_decorator
 from utils.decorators import is_company, is_job_owner
 from .models import Job
 from .forms import JobForm
+from user.models import User
+from diploma.models import Diploma
 
 
 @method_decorator(login_required(), name="dispatch")
@@ -53,20 +55,40 @@ class JobDeleteView(generic.DeleteView):
 class JobDetailView(generic.DetailView):
     model = Job
 
+    def get_suitable_users(self, **kwargs):
+        instance = self.get_object()
+        requiredEducationLevel = instance.requiredEducationLevel
+        requiredExperienceYears = instance.requiredExperienceYears
+        users = User.objects.filter(user_type=User.CANDIDATE)
+        suitable_users = []
+
+        for user in list(users):
+            if user.profile.experienceYears >= requiredExperienceYears:
+                diplomas = user.diplomas.filter(
+                    diplomaTitle=requiredEducationLevel.diplomaTitle
+                )
+                print(user, diplomas)
+                if diplomas:
+                    suitable_users += [user]
+        return suitable_users
+
+    def get_context_data(self, **kwargs):
+        context = super(JobDetailView, self).get_context_data(**kwargs)
+        context["suitable_users"] = self.get_suitable_users()
+        # print(self.get_suitable_users())
+
+        return context
+
 
 class JobListView(generic.ListView):
     model = Job
 
 
-class MyJoBView(generic.ListView):
+class MyJobView(generic.ListView):
     model = Job
     template_name = "job/job_dashborad.html"
 
     def get_queryset(self):
-        queryset = super(MyJoBView, self).get_queryset()
+        queryset = super(MyJobView, self).get_queryset()
         queryset = queryset.filter(company=self.request.user)
         return queryset
-
-
-# class MyJobsView(generic.ListView):
-#     model = Job

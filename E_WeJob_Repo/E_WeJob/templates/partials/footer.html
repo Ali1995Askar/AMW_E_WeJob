@@ -29,18 +29,28 @@
                         <h5 class="m-b30 text-white">Frequently Asked Questions</h5>
                         <ul class="list-2 list-line">
                             <li>
-                                <h6>Company</h6>
+                                <h6>Services</h6>
                             </li>
                             <li>
-                                <h6>Candidate</h6>
+                                <h6>API</h6>
                             </li>
-                            <li><a href="#">Post Job</a></li>
-                            <li><a href="#">add Diploma</a></li>
 
-                            <li><a href="#">My Jobs</a></li>
-                            <li><a href="#">My Profile</a></li>
-                            <li><a href="#">Candidates suitable for Jobs</a></li>
-                            <li><a href="#">Jobs suitable</a></li>
+                            <li><a href="{% url 'job:create' %}">Post Job</a></li>
+                            <li><a href="{% url 'user_api:comapany-signup' %}">Company Signup</a></li>
+
+                            <li><a href="{% url 'job:create' %}">All Jobs</a></li>
+                            <li><a href="{% url 'user_api:candidate-signup' %}">Candidate Signup</a></li>
+
+                            <li><a href="{% url 'job:create' %}">Add Diploma</a></li>
+                            <li><a href="{% url 'user_api:user-login' %}">Login</a></li>
+
+                            <li><a href="{% url 'job:create' %}">Profile</a></li>
+                            <li><a href="{% url 'job_api:jobs-list' %}">Jobs</a></li>
+
+                            <li><a href="{% url 'job:create' %}">
+                                    ------</a></li>
+                            <li><a href="{% url 'diploma_api:diplomas-list' %}">Diploms</a></li>
+
 
                         </ul>
                     </div>
@@ -49,9 +59,9 @@
                     <div class="widget border-0">
                         <h5 class="m-b30 text-white">Others</h5>
                         <ul class="list-2 w10 list-line">
-                            <li><a href="#">home</a></li>
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">Contact us</a></li>
+                            <li><a href="{% url 'index' %}">home</a></li>
+                            <li><a href="{% url 'about-us' %}">About us</a></li>
+                            <li><a href="{% url 'contact-us' %}">Contact us</a></li>
                             <li><a href="#">Privacy & Seurty</a></li>
                             <li><a href="#">Terms of Serice</a></li>
                             <li><a href="#">Support</a></li>
@@ -71,3 +81,18 @@
         </div>
     </div>
 </footer>
+
+
+{% comment %}
+<li><a href="#">add Diploma</a></li>
+{% if user.is_authenticated %}
+<li><a href="{% url 'job:my-jobs' user.username %}" class="dez-page">My Jobs</a></li>
+<li><a href="{% url 'job:my-jobs' user.pk %}">My Profile</a></li>
+
+{% else %}
+<li><a href="user:login">My Jobs</a></li>
+<li><a href="user:login">My Profile</a></li>
+
+{% endif %}
+
+{% endcomment %}

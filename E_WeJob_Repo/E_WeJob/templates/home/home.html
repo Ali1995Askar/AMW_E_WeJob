@@ -5,28 +5,39 @@
     <!-- Section Banner -->
     <div class="dez-bnr-inr dez-bnr-inr-md" style="background-image:url({% static 'images/main-slider/slide2.jpg' %});">
         <marquee behavior="" direction="">
-            <h4>E_WeJob Site <br /> <span class="text-primary">{{date}}</span> mobile Web.</h4>
+            <h4 class="text-primary">{% now "SHORT_DATETIME_FORMAT" %}
         </marquee>
+
         <div class="container">
             <div class="dez-bnr-inr-entry align-m ">
-                <h2>Are you company ! <br /> <span class="text-primary">don't have account ?</span> register
-                    {% now 'date' %}.</h2>
+                <h2>Are you company ! <br /> <span class="text-primary">don't have account ?</span> </h2>
                 <div class="find-job-bx">
-                    <a href="{% url 'job:all' %}">
-                        <p class="site-button button-sm">don't have account </p>
+                    <a href="{% url 'user:company-sign-up' %}">
+                        <p class="site-button button-sm">register as comapny </p>
                     </a>
+                    <a href="{% url 'user:redirect' %}">
+                        <p class="site-button button-sm">My Jobs</p>
+                    </a>
+                    <h2>Search Between More Them <br /> <span class="text-primary">10,000</span> Open Jobs.</h2>
                     <a href="{% url 'job:all' %}">
                         <p class="site-button button-sm">Find Jobs</p>
                     </a>
-                    <h2>Search Between More Them <br /> <span class="text-primary">50,000</span> Open Jobs.</h2>
-                    <a href="{% url 'job:all' %}">
-                        <p class="site-button button-sm">Find Jobs</p>
-                    </a>
-                    <a href="{% url 'job:all' %}">
-                        <p class="site-button button-sm">Find Jobs</p>
+                    <a href="{% url 'user:candidate-sign-up' %}">
+                        <p class="site-button button-sm">register as candidate</p>
                     </a>
 
                 </div>
+
+
+                <div class="col-lg-12">
+                    <h2 class="m-b10 text-dark">have account !</h2>
+                    <p class="m-b0 text-primary">comapny or candidate!</p>
+                    <a href="{% url 'user:login' %}">
+                        <p class="site-button button">login</p>
+                    </a>
+                </div>
+
+                </a>
             </div>
         </div>
     </div>
@@ -36,7 +47,7 @@
         style="background-image: url({% static 'images/background/bg4.jpg' %});">
         <div class="container">
             <div class="section-head text-center text-white">
-                <h2 class="m-b5">Testimonials</h2>
+                <h2 class="m-b5">happy clients</h2>
                 <h5 class="fw4">Few words from candidates</h5>
             </div>
             <div class="blog-carousel-center owl-carousel owl-none">
@@ -44,14 +55,15 @@
                     <div class="testimonial-5">
                         <div class="testimonial-text">
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                has been the industry...</p>
+                                has been
+                                the industry...</p>
                         </div>
                         <div class="testimonial-detail clearfix">
                             <div class="testimonial-pic radius shadow">
                                 <img src="{% static 'images/testimonials/pic1.jpg' %}" width="100" height="100" alt="">
                             </div>
-                            <strong class="testimonial-name">David Matin</strong>
-                            <span class="testimonial-position">Student</span>
+                            <strong class="testimonial-name">lilian najeeb</strong>
+                            <span class="testimonial-position">software engineer</span>
                         </div>
                     </div>
                 </div>
@@ -59,14 +71,31 @@
                     <div class="testimonial-5">
                         <div class="testimonial-text">
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
-                                has been the industry...</p>
+                                has been
+                                the industry...</p>
                         </div>
                         <div class="testimonial-detail clearfix">
                             <div class="testimonial-pic radius shadow">
                                 <img src="{% static 'images/testimonials/pic2.jpg' %}" width="100" height="100" alt="">
                             </div>
-                            <strong class="testimonial-name">David Matin</strong>
-                            <span class="testimonial-position">Student</span>
+                            <strong class="testimonial-name">esraa ali</strong>
+                            <span class="testimonial-position">network engineer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="testimonial-5">
+                        <div class="testimonial-text">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                                has been
+                                the industry...</p>
+                        </div>
+                        <div class="testimonial-detail clearfix">
+                            <div class="testimonial-pic radius shadow">
+                                <img src="{% static 'images/testimonials/pic3.jpg' %}" width="100" height="100" alt="">
+                            </div>
+                            <strong class="testimonial-name">ola ahmad</strong>
+                            <span class="testimonial-position">Artificial intelligence engineer</span>
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,6 @@ app_name = "diploma_api"
 
 router = SimpleRouter()
 
-router.register("diploma", DiplomaViewSet)
+router.register("diplomas", DiplomaViewSet, basename="diplomas")
 
 urlpatterns = router.urls

@@ -17,7 +17,7 @@ myjobs-dashboard
                 <div class="row">
                     <div class="col">
                         <div class="top_page py-2">
-                            <h2>My jobs list</h2>
+                            <h2>My Jobs </h2>
                         </div>
                         <div class="table-responsive my-3">
                             <table class="table table-hover my-3 text-center">
@@ -28,9 +28,10 @@ myjobs-dashboard
                                         <th>salary</th>
                                         <th>Education Level</th>
                                         <th>Experience Years</th>
-                                        <th>detail</th>
+
                                         <th>update</th>
                                         <th>delete</th>
+                                        <th>suitable users</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -42,11 +43,6 @@ myjobs-dashboard
                                         <td>{{job.requiredEducationLevel}}</td>
                                         <td>{{job.requiredExperienceYears}}</td>
                                         <td>
-                                            <a href={% url 'job:detail' job.id %}>
-                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                        <td>
                                             <a href={% url 'job:update' job.id %}>
                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                             </a>
@@ -54,6 +50,11 @@ myjobs-dashboard
                                         <td>
                                             <a href={% url 'job:delete' job.id %}>
                                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href={% url 'job:detail' job.id %}>
+                                                <i class="fa fa-eye" aria-hidden="true"></i>
                                             </a>
                                         </td>
 

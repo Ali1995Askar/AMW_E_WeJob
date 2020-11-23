@@ -3,7 +3,6 @@
 jobs-list
 {% endblock %}
 {% block content %}
-<h1 id="test">fdf</h1>
 <div class="content-block">
     {% include "partials/inner_page_banner.html" with title="Brouse Jobs" root="home" child="List of jobs "%}
     <div class="section-full bg-white browse-job content-inner-2">
@@ -11,20 +10,12 @@ jobs-list
             <div class="row">
                 <div class="col-xl-9 col-lg-8">
                     <h5 class="widget-title font-weight-700 text-uppercase">Recent Jobs</h5>
-                    <ul class="post-job-bx">
+                    <ul class="post-job-bx" id="jobs_id_ul">
                         {% for job in object_list %}
                         {% include "partials/job_card.html" %}
                         {% endfor %}
                     </ul>
-                    <div class="pagination-bx m-t30">
-                        <ul class="pagination">
-                            <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
-                        </ul>
-                    </div>
+
                 </div>
                 <div class="col-xl-3 col-lg-4">
                     <div class="sticky-top">
@@ -38,7 +29,7 @@ jobs-list
                             <h6 class="widget-title font-weight-700 m-t0 text-uppercase">Education Level</h6>
 
                             <select id="RequiredEducationLeve_id" class="form-control">
-
+                                <option value=0> all </option>
                             </select>
                         </div>
 
@@ -61,7 +52,9 @@ jobs-list
 {% endblock content %}
 
 {% block extra_js %}
+
 <script>
+
     $.ajax({
         url: "{% url 'diploma_api:diploma-list' %}",
         type: 'GET',
@@ -79,6 +72,33 @@ jobs-list
 {% endblock extra_js%}
 
 {% comment %}
-{{job}}&nbsp;&nbsp; |&nbsp;&nbsp;<a href="{% url 'job:update' job.id %}">update</a>
-&nbsp;&nbsp;|&nbsp;&nbsp;<a href="{% url 'job:delete'  job.id %}">delete</a>
-{% endcomment %}
+<div class="pagination-bx m-t30">
+    <ul class="pagination">
+        <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
+        <li class="active"><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
+    </ul>
+</div>
+<script>
+    $.ajax({
+        url: "{% url 'job_api:job-list' %}",
+        type: 'GET',
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function (result) {
+            var row_data = "{% include 'partials/job_card.html' %}";
+            for (let i = 0; i < result.count; i++) {
+                $('#jobs_id_ul').append.innerHTML(row_data);
+            }
+            console.log(('#jobs_id_ul'));
+
+        }
+    });
+
+    { { job } }& nbsp;& nbsp; |& nbsp;& nbsp; <a href="{% url 'job:update' job.id %}">update</a>
+        & nbsp;& nbsp;|& nbsp;& nbsp; <a href="{% url 'job:delete'  job.id %}">delete</a>
+
+
+    {% endcomment %}

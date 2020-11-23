@@ -11,19 +11,19 @@ class CustomDiplomaAdmin(admin.ModelAdmin):
     form = DiplomaForm
     # ordering = ("requiredEducationLevel",)
     list_display = (
-        "candidate",
+        "user",
         "diplomaTitle",
     )
     list_display_links = (
-        "candidate",
+        "user",
         "diplomaTitle",
     )
     list_filter = (
-        "candidate",
+        "user",
         "diplomaTitle",
     )
     search_fields = (
-        "candidate",
+        "user",
         "diplomaTitle",
     )
 

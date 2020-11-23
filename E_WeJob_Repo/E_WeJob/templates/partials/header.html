@@ -17,7 +17,6 @@
                     <span></span>
                     <span></span>
                 </button>
-                <!-- extra nav -->
 
                 <!-- Quik search -->
                 <div class="dez-quik-search bg-primary">
@@ -29,35 +28,17 @@
                 <!-- main nav -->
                 <div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
                     <ul class="nav navbar-nav">
-
                         <li>
                             <a href="#">For Candidates <i class="fa fa-chevron-down"></i></a>
                             <ul class="sub-menu">
-                                <li><a href="{% url 'job:all' %}" class="dez-page">All Job</a></li>
+                                <li><a href="{% url 'job:all' %}" class="dez-page">All Jobs</a></li>
                                 <li><a href="{% url 'diploma:create' %}" class="dez-page">add Diploma</a></li>
-                                <li><a href="browse-job.html" class="dez-page">Jobs suitable</a></li>
-
-                                {% if user.is_authenticated %}
-                                <li><a href=" {% url 'user:detail' user.pk %}" class="dez-page">My Profile</a></li>
-
-                                {% endif %}
-
-
                             </ul>
                         </li>
                         <li>
                             <a href="#">For Companies <i class="fa fa-chevron-down"></i></a>
                             <ul class="sub-menu">
-
-
                                 <li><a href="{% url 'job:create' %}" class="dez-page">Post a Job</a></li>
-
-                                {% if user.is_authenticated %}
-                                <li><a href="{% url 'job:my-jobs' user.username %}" class="dez-page">My Jobs</a></li>
-
-                                {% endif %}
-
-
                             </ul>
                         </li>
                         <li>
@@ -66,33 +47,33 @@
                         <li>
                             <a href="{% url 'about-us' %}">About us</a>
                         </li>
-
                         <li>
                             <a href="#">
                                 {% if user.is_authenticated %}
-                                {{  user.username}}
+                                {{  user.username }}
                                 {% else %}
                                 Account
                                 {% endif %}
                                 <i class="fa fa-user"></i></a>
-
                             <ul class="sub-menu">
-                                <li><a href="{% url 'user:company-sign-up' %}" class="dez-page">As Company</a></li>
-                                <li><a href="{% url 'user:candidate-sign-up' %}" class="dez-page">As Candidate</a></li>
+                                {% if user.is_authenticated %}
+                                <li><a href=" {% url 'user:redirect' %}" class="dez-page">My profile</a></li>
+                                {% else %}
+                                <li><a href="{% url 'user:company-sign-up' %}" class="dez-page"> Company Signup</a></li>
+                                <li><a href="{% url 'user:candidate-sign-up' %}" class="dez-page"> Candidate Signup</a>
+                                </li>
+                                {% endif %}
+
                                 {% if user.is_authenticated %}
                                 <li>
-                                    <a href="{% url 'user:logout' %}"><i class="fa fa-unlock"></i>
+                                    <a href="{% url 'user:logout' %}"><i class="fa fa-lock"></i>
                                         logout</a>
                                 </li>
                                 {% else %}
                                 <li>
-                                    <a href="{% url 'user:login' %}"><i class="fa fa-lock "></i> login</a>
-
+                                    <a href="{% url 'user:login' %}"><i class="fa fa-unlock"></i> login</a>
                                 </li>
                                 {% endif %}
-                                <li><i class="fa fa-lock mx-2"></i>David Copperfield
-                                </li>
-
                             </ul>
                         </li>
                     </ul>
@@ -108,7 +89,7 @@
 <div class="extra-nav">
     <div class="extra-cell">
         {% if user.is_authenticated %}
-        <a href="{% url 'user:logout' %}" class="site-button"><i class="fa fa-unlock"></i> logout</a>
+        <a href="{% url 'user:logout' %}" class="site-button">logout<i class="fa fa-unlock"></i> </a>
         {% else %}
         <a href="{% url 'user:login' %}" class="site-button"><i class="fa fa-lock"></i> login</a>
         {% endif %}
