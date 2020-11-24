@@ -9,7 +9,7 @@ def is_company(function):
     @wraps(function)
     def wrap(request, *args, **kwargs):
 
-        if request.user.is_company or request.user.is_superuser:
+        if request.user.is_company:
             return function(request, *args, **kwargs)
         else:
             raise PermissionDenied
@@ -22,7 +22,7 @@ def is_candidate(function):
     @wraps(function)
     def wrap(request, *args, **kwargs):
 
-        if request.user.is_candidate or request.user.is_superuser:
+        if request.user.is_candidate:
             return function(request, *args, **kwargs)
         else:
             raise PermissionDenied
