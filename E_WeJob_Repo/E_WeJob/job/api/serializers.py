@@ -9,7 +9,10 @@ from ..models import Job
 
 
 class JobSerializer(serializers.ModelSerializer):
+    def get_cName(self, obj):
+        return obj.company.profile.cName
 
+    cName = serializers.SerializerMethodField("get_cName")
     company = UserSerializer(read_only=True)
     requiredEducationLevel = DiplomaSerializer(read_only=True)
 
@@ -18,6 +21,7 @@ class JobSerializer(serializers.ModelSerializer):
         depth = 1
         fields = [
             "id",
+            "cName",
             "company",
             "title",
             "requiredExperienceYears",

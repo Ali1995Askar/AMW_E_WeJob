@@ -50,6 +50,7 @@ class UserLoginView(APIView):
                 {
                     "username": user.username,
                     "email": user.email,
+                    "user_type": user.user_type,
                     "token": token.key,
                 },
                 status=status.HTTP_200_OK,

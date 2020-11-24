@@ -3,6 +3,7 @@
 jobs-list
 {% endblock %}
 {% block content %}
+
 <div class="content-block">
     {% include "partials/inner_page_banner.html" with title="Brouse Jobs" root="home" child="List of jobs "%}
     <div class="section-full bg-white browse-job content-inner-2">
@@ -11,40 +12,63 @@ jobs-list
                 <div class="col-xl-9 col-lg-8">
                     <h5 class="widget-title font-weight-700 text-uppercase">Recent Jobs</h5>
                     <ul class="post-job-bx" id="jobs_id_ul">
-                        {% for job in object_list %}
+                        {% if results %}
+                        {% for job in results %}
                         {% include "partials/job_card.html" %}
                         {% endfor %}
+                        {% else %}
+                        <h6 class="widget-title font-weight-700 text-uppercase">No Jobs to View</h6>
+                        {% endif %}
+
                     </ul>
 
                 </div>
                 <div class="col-xl-3 col-lg-4">
-                    <div class="sticky-top">
+
+                    <form class="sticky-top" method="GET">
                         <div class="clearfix m-b40">
+                            <h5>Order By</h5>
                             <h6 class="widget-title font-weight-700 text-uppercase">Experience Years</h6>
                             <div class="">
-                                <input type="number" id="RequiredExperienceYears_id" class="form-control" />
+
+                                <select name="ordering" class="form-control">
+                                    <option value="requiredExperienceYears">asc</option>
+                                    <option value="-requiredExperienceYears">desc</option>
+                                </select>
+
+                            </div>
+                            <h6 class="widget-title font-weight-700 text-uppercase">Salary</h6>
+                            <div class="">
+
+                                <select name="ordering" class="form-control">
+                                    <option value="salary">asc</option>
+                                    <option value="-salary">desc</option>
+                                </select>
+
                             </div>
                         </div>
                         <div class="clearfix m-b20">
+                            <h5>Filter By</h5>
                             <h6 class="widget-title font-weight-700 m-t0 text-uppercase">Education Level</h6>
 
-                            <select id="RequiredEducationLeve_id" class="form-control">
-                                <option value=0> all </option>
+                            <select name="requiredEducationLevel" id="RequiredEducationLeve_id" class="form-control">
+                                <option value="">all</option>
                             </select>
                         </div>
 
                         <div class="clearfix m-t30 ">
                             <span class="input-group-btn">
-                                <button name="filter" value="filter" type="submit" id="filter_btn_id"
+                                <button value="filter" type="submit" id="filter_btn_id"
                                     class="site-button radius-xl">Filter</button>
                             </span>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
-
         </div>
+
     </div>
+</div>
 </div>
 
 <br>
@@ -56,7 +80,7 @@ jobs-list
 <script>
 
     $.ajax({
-        url: "{% url 'diploma_api:diploma-list' %}",
+        url: "{% url 'diploma_api:diplomas-list' %}",
         type: 'GET',
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',

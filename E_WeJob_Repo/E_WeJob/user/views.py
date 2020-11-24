@@ -43,6 +43,7 @@ class UserDetailView(LoginRequiredMixin, generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(UserDetailView, self).get_context_data(**kwargs)
+
         context["suitable_jobs"] = self.get_suitable_jobs()
         return context
 
@@ -74,7 +75,7 @@ class UserRedirectView(LoginRequiredMixin, generic.RedirectView):
             return reverse("user:detail", kwargs={"pk": self.request.user.pk})
         if self.request.user.is_company:
             return reverse(
-                "user:redirect", kwargs={"username": self.request.user.username}
+                "job:my-jobs", kwargs={"username": self.request.user.username}
             )
         if self.request.user.is_superuser:
             return reverse("admin:index")
@@ -85,7 +86,7 @@ class CompanyCreationView(generic.CreateView):
     form_class = forms.UserCreationForm
 
     def get_success_url(self):
-        return reverse("user:detail", kwargs={"pk": self.request.user.pk})
+        return reverse("job:my-jobs", kwargs={"username": self.request.user.username})
 
     def get_context_data(self, **kwargs):
         context = super(CompanyCreationView, self).get_context_data(**kwargs)

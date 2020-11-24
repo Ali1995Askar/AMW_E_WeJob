@@ -7,12 +7,22 @@ from .serializers import JobSerializer
 
 from ..models import Job
 
+from rest_framework import filters
+
+import django_filters.rest_framework
+
 
 class JobViewSet(viewsets.ModelViewSet):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
     permission_classes = (permissions.IsAuthenticated, IsCompany, IsJobOwnerOrReadOnly)
+    filter_backends = (
+        django_filters.rest_framework.DjangoFilterBackend,
+        filters.OrderingFilter,
+    )
     filter_class = JobFilter
+
+    ordering_fields = ["requiredExperienceYears"]
 
     def perform_create(self, serializer):
         serializer.save(company=self.request.user)

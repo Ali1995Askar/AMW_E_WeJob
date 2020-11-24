@@ -1,13 +1,46 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}
-job-delete
+post-job
 {% endblock %}
 {% block content %}
-job_delete_confirm
 
-<form method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes" /> <br>
-    <a href="{% url 'job:all' %}">back to all products</a>
-</form>
+<div class="page-content bg-white">
+    <!-- inner page banner -->
+    {% include "partials/inner_page_banner.html" with title="Delete Job" root=object.title child="Delete Confirm Form"%}
+
+    <!-- inner page banner END -->
+    <!-- contact area -->
+    <div class="section-full content-inner shop-account">
+        <!-- Product -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h3 class="font-weight-600 m-t0 m-b20">Delete Job </h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 m-b30">
+                    <div class="p-a30 border-1  max-w500 m-auto">
+                        <div class="tab-content">
+                            <form id="login" class="tab-pane active" method="post">
+                                {% csrf_token %}
+                                <h6 class="font-weight-700">Are you sure you want delete {{object.title}} Job ?</h6>
+
+                                <div class="text-left">
+                                    <button type="submit" class="btn btn-primary ">Delete</button>
+                                </div>
+                                <a href="{% url 'user:redirect' %}">Back to Jobs Dashboard</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Product END -->
+    </div>
+    <!-- contact area  END -->
+</div>
+
+
 {% endblock content %}

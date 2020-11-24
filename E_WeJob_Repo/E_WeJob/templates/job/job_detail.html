@@ -14,108 +14,43 @@ job-details
                         <li>
                             <a href="#">
                                 <div class="d-flex m-b30">
-
                                     <div class="job-post-company">
-
                                         <span>
                                             <i class="fa fa-building fa-4x"></i>
+                                            {{object.title}}
                                         </span>
-
                                     </div>
-
                                     <div class="job-post-info">
-                                        <h4>{{object.username}}</h4>
+                                        <h4>{{object.title}}</h4>
                                         <ul>
-
-                                            {% if user.is_company %}
-                                            <li><i class="fa fa-map-marker"></i>{{object.profile.cName}}</li>
-                                            {% else %}
-
-                                            <li><i class="fa fa-map-marker"></i>{{object.profile.fullName}}</li>
-
-                                            <li><i class="fa fa-clock-o"></i>{{user.profile.experienceYears}} years of
+                                            <li><i class="fa fa-graduation-cap"></i>{{object.requiredEducationLevel}}
+                                            </li>
+                                            <li><i class="fa fa-clock-o"></i>{{object.requiredExperienceYears}}
+                                                years of
                                                 experience</li>
-
-                                            {% endif %}
-                                            <li><i class="fa fa-mobile"></i>{{object.profile.tel}}</li>
-                                            <li><i class="fa fa-envelope-open"></i>{{user.email}}</li>
+                                            <li><i class="fa fa-envelope"></i>{{object.company.email}}</li>
                                         </ul>
                                     </div>
                                 </div>
-                                {% if user.is_company %}
-
-                                <a href="{% url 'job:my-jobs' user.username %}">
+                                <a href="{% url 'user:redirect' %}">
                                     <div class="d-flex">
-
                                         <div class="job-time mr-auto">
-
-                                            <h5>Suitable Users</h5>
-                                            {% for suitable_user in suitable_users  %}
+                                            <h5><i class="fa fa-check-circle"> </i> Suitable
+                                                Users ( {{ suitable_users|length }} )</h5>
+                                            {% for suitable_user in suitable_users%}
                                             <span>
-                                                <i class="fa fa-user fa-2x"></i>
-                                                {{suitable_user.username}}<br>
-                                                <i class="fa fa-envelope fa-2x"></i>
-                                                {{suitable_user.email}}<br>
-                                                <i class="fa fa-mobile fa-2x"></i>
+                                                <i class="fa fa-check-circle">{{suitable_user.profile.fullName}} </i> -
+                                                <i class="fa fa-mobile"></i>
                                                 {{suitable_user.profile.tel}}
                                             </span>
                                             {% endfor %}
-
-
-
                                         </div>
                                     </div>
-
                                 </a>
-
-                                {% else %}
-                                <h5><i class="fa fa-graduation-cap"> {{suitable_job}} </i>Diplomas</h5>
-                                <div class="d-flex">
-
-                                    <div class="job-time mr-auto">
-                                        {% for diploma in object.diplomas.all%}
-
-                                        <span>
-                                            <i class="fa fa-graduation-cap"></i>
-                                            {{diploma}}
-                                        </span>
-
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                                <a href="{% url 'job:my-jobs' user.username %}">
-                                    <div class="d-flex">
-
-                                        <div class="job-time mr-auto">
-
-                                            <h5><i class="fa fa-check-circle"> {{suitable_job}} </i>Suitable Jobs</h5>
-                                            {% for suitable_job in suitable_jobs%}
-
-                                            <span>
-                                                <i class="fa fa-check-circle">{{suitable_job}} </i>
-                                                - {{suitable_job.salary}}
-                                                <i class="fa fa-usd"></i>
-
-                                            </span>
-
-                                            {% endfor %}
-
-                                        </div>
-                                    </div>
-
-                                </a>
-
-                                {% endif %}
                                 <span>
-                                    {% if user.is_company %}
-                                    <i class="post-like fa fa-building"></i>
-                                    {% else %}
-                                    <i class="post-like fa fa-id-card-o"></i>
-
-                                    {% endif %}
+                                    <i class="post-like fa fa-check-circle"></i>
                                 </span>
                             </a>
-
                         </li>
                     </div>
                 </div>
@@ -124,20 +59,3 @@ job-details
     </div>
 </div>
 {% endblock content %}
-
-{% comment %}
-{% extends "base.html" %}
-{% block title %}
-job-details
-{% endblock %}
-{% block content %}
-{{object}}
-
-{% for user in suitable_users  %}
-{{user.profile.tel}}
-{% endfor %}
-{% endblock content %}
-
-
-suitable_users
-{% endcomment %}

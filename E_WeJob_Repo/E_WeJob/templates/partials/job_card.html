@@ -6,10 +6,10 @@
                 <span><img src="{% static 'images/logo/icon1.png' %}" /></span>
             </div>
             <div class="job-post-info">
-                <h4>{{job.title}}</h4>
+                <h4>{{results.title}}</h4>
                 <ul>
-                    <li><i class="fa  fa-building-o"></i> {{job.company}}</li>
-                    <li><i class="fa fa-graduation-cap"></i>{{job.requiredEducationLevel}}</li>
+                    <li><i class="fa  fa-building-o"></i> {{job.cName}}</li>
+                    <li><i class="fa fa-graduation-cap"></i>{{job.requiredEducationLevel.diplomaTitle}}</li>
                 </ul>
             </div>
         </div>

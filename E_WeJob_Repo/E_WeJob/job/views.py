@@ -11,6 +11,12 @@ from .models import Job
 from .forms import JobForm
 from user.models import User
 from diploma.models import Diploma
+from rest_framework import filters
+import django_filters.rest_framework
+from rest_framework import viewsets
+from job.api.serializers import JobSerializer
+from rest_framework import permissions, renderers, viewsets
+from job.api.filters import JobFilter
 
 
 @method_decorator(login_required(), name="dispatch")
@@ -52,6 +58,9 @@ class JobDeleteView(generic.DeleteView):
         return reverse("job:all")
 
 
+@method_decorator(login_required(), name="dispatch")
+@method_decorator(is_company, name="dispatch")
+@method_decorator(is_job_owner, name="dispatch")
 class JobDetailView(generic.DetailView):
     model = Job
 
@@ -80,10 +89,21 @@ class JobDetailView(generic.DetailView):
         return context
 
 
-class JobListView(generic.ListView):
-    model = Job
+class JobListView(viewsets.ReadOnlyModelViewSet):
+    queryset = Job.objects.all()
+    serializer_class = JobSerializer
+    renderer_classes = (renderers.JSONRenderer, renderers.TemplateHTMLRenderer)
+    filter_backends = (
+        django_filters.rest_framework.DjangoFilterBackend,
+        filters.OrderingFilter,
+    )
+    filter_class = JobFilter
+    ordering_fields = ["requiredExperienceYears", "salary"]
+    template_name = "job/job_list.html"
 
 
+@method_decorator(login_required(), name="dispatch")
+@method_decorator(is_company, name="dispatch")
 class MyJobView(generic.ListView):
     model = Job
     template_name = "job/job_dashborad.html"

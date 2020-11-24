@@ -36,20 +36,22 @@
                             </li>
 
                             <li><a href="{% url 'job:create' %}">Post Job</a></li>
-                            <li><a href="{% url 'user_api:comapany-signup' %}">Company Signup</a></li>
-
-                            <li><a href="{% url 'job:create' %}">All Jobs</a></li>
-                            <li><a href="{% url 'user_api:candidate-signup' %}">Candidate Signup</a></li>
-
-                            <li><a href="{% url 'job:create' %}">Add Diploma</a></li>
-                            <li><a href="{% url 'user_api:user-login' %}">Login</a></li>
-
-                            <li><a href="{% url 'job:create' %}">Profile</a></li>
                             <li><a href="{% url 'job_api:jobs-list' %}">Jobs</a></li>
 
-                            <li><a href="{% url 'job:create' %}">
-                                    ------</a></li>
+
+                            <li><a href="{% url 'job:jobs-list' %}">Brouse Jobs</a></li>
                             <li><a href="{% url 'diploma_api:diplomas-list' %}">Diploms</a></li>
+
+
+                            <li><a href="{% url 'diploma:create' %}">Add Diploma</a></li>
+                            <li><a href="{% url 'user_api:user-login' %}">Login</a></li>
+
+                            <li><a href="{% url 'user:redirect' %}">Profile</a></li>
+                            <li><a href="{% url 'user_api:comapany-signup' %}">Company Signup</a></li>
+
+                            <li><a href="{% url 'admin:index' %}">
+                                    Admin</a></li>
+                            <li><a href="{% url 'user_api:candidate-signup' %}">Candidate Signup</a></li>
 
 
                         </ul>
@@ -81,18 +83,3 @@
         </div>
     </div>
 </footer>
-
-
-{% comment %}
-<li><a href="#">add Diploma</a></li>
-{% if user.is_authenticated %}
-<li><a href="{% url 'job:my-jobs' user.username %}" class="dez-page">My Jobs</a></li>
-<li><a href="{% url 'job:my-jobs' user.pk %}">My Profile</a></li>
-
-{% else %}
-<li><a href="user:login">My Jobs</a></li>
-<li><a href="user:login">My Profile</a></li>
-
-{% endif %}
-
-{% endcomment %}

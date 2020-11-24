@@ -17,7 +17,29 @@ myjobs-dashboard
                 <div class="row">
                     <div class="col">
                         <div class="top_page py-2">
-                            <h2>My Jobs </h2>
+                            <h2 class="font-weight-600 m-t0 m-b20 text-dark">My Jobs </h2>
+                            <div class="row">
+                                <div class="col-md-12 col-lg-6 text-center">
+
+                                    <h6 class="font-weight-600 m-t0 m-b20 text-primary"><i class="fa fa-id-badge "
+                                            aria-hidden="true"></i> {{user.profile.tel}}
+                                    </h6>
+                                </div>
+                                <div class="col-md-12 col-lg-6 text-center">
+                                    <h6 class="font-weight-600 m-t0 m-b20 text-primary"><i class="fa fa-envelope"
+                                            aria-hidden="true"></i> {{user.email}}</h6>
+
+                                </div>
+                                <div class="col-md-12  text-center">
+
+                                    <h6 class="font-weight-600 m-t0 m-b20 text-primary"><i class="fa fa-mobile-phone "
+                                            aria-hidden="true"></i>
+                                        {{user.profile.tel}}
+                                    </h6>
+                                </div>
+
+                            </div>
+
                         </div>
                         <div class="table-responsive my-3">
                             <table class="table table-hover my-3 text-center">

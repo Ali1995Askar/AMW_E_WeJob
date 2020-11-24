@@ -19,6 +19,6 @@ class JobForm(forms.ModelForm):
                 attrs={"class": "form-control", "placeholder": "Experience Years"},
             ),
             "salary": forms.NumberInput(
-                attrs={"class": "form-control", "placeholder": "Experience Years"},
+                attrs={"class": "form-control", "placeholder": "Salary  $ "},
             ),
         }

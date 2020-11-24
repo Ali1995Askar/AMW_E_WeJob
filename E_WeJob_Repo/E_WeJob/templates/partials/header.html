@@ -17,21 +17,13 @@
                     <span></span>
                     <span></span>
                 </button>
-
-                <!-- Quik search -->
-                <div class="dez-quik-search bg-primary">
-                    <form action="#">
-                        <input name="search" value="" type="text" class="form-control" placeholder="Type to search">
-                        <span id="quik-search-remove"><i class="flaticon-close"></i></span>
-                    </form>
-                </div>
                 <!-- main nav -->
                 <div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
                     <ul class="nav navbar-nav">
                         <li>
                             <a href="#">For Candidates <i class="fa fa-chevron-down"></i></a>
                             <ul class="sub-menu">
-                                <li><a href="{% url 'job:all' %}" class="dez-page">All Jobs</a></li>
+                                <li><a href="{% url 'job:jobs-list' %}" class="dez-page">Brouse Jobs</a></li>
                                 <li><a href="{% url 'diploma:create' %}" class="dez-page">add Diploma</a></li>
                             </ul>
                         </li>
@@ -39,6 +31,7 @@
                             <a href="#">For Companies <i class="fa fa-chevron-down"></i></a>
                             <ul class="sub-menu">
                                 <li><a href="{% url 'job:create' %}" class="dez-page">Post a Job</a></li>
+                                <li><a href="{% url 'user:redirect' %}" class="dez-page">My Jobs</a></li>
                             </ul>
                         </li>
                         <li>
@@ -83,16 +76,3 @@
     </div>
     <!-- main header END -->
 </header>
-
-
-{% comment %}
-<div class="extra-nav">
-    <div class="extra-cell">
-        {% if user.is_authenticated %}
-        <a href="{% url 'user:logout' %}" class="site-button">logout<i class="fa fa-unlock"></i> </a>
-        {% else %}
-        <a href="{% url 'user:login' %}" class="site-button"><i class="fa fa-lock"></i> login</a>
-        {% endif %}
-    </div>
-</div>
-{% endcomment %}
