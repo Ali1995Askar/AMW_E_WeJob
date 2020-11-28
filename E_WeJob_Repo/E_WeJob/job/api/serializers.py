@@ -14,7 +14,7 @@ class JobSerializer(serializers.ModelSerializer):
 
     cName = serializers.SerializerMethodField("get_cName")
     company = UserSerializer(read_only=True)
-    requiredEducationLevel = DiplomaSerializer()
+    requiredEducationLevel = serializers.CharField()
 
     class Meta:
         model = Job
@@ -32,6 +32,6 @@ class JobSerializer(serializers.ModelSerializer):
     # to do set pk to slug
     def create(self, validated_data):
         diploma_pk = validated_data.pop("requiredEducationLevel")
-        diploma = get_object_or_404(Diploma, pk=diploma_pk.get("diplomaTitle"))
+        diploma = get_object_or_404(Diploma, pk=diploma_pk)
         job = Job.objects.create(**validated_data, requiredEducationLevel=diploma)
         return job

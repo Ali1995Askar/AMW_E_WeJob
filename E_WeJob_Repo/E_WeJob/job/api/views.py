@@ -17,12 +17,13 @@ import django_filters.rest_framework
 from rest_framework.response import Response
 from .filters import JobFilter
 from rest_framework import status
+from rest_framework import permissions
 
 from rest_framework import generics
 from django.contrib.auth import get_user_model
 
 from utils.serializers import UserDetailsSerializer
-
+from utils.permissions import IsCompany
 from .serializers import JobSerializer
 from ..models import Job
 
@@ -32,7 +33,7 @@ User = get_user_model()
 class JobListCreateView(generics.ListCreateAPIView):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
-    # permission_classes = [IsAdminUser]
+    permission_classes = [IsCompany]
     filter_backends = (
         django_filters.rest_framework.DjangoFilterBackend,
         filters.OrderingFilter,
@@ -50,7 +51,8 @@ class JobListCreateView(generics.ListCreateAPIView):
 class SuitableJobs(generics.ListAPIView):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
-    # permission_classes = [IsAdminUser]
+    permission_classes = [permissions.IsAuthenticated]
+
     def get_suitable_Jobs(self, request):
         user = self.request.user
         EducationLevel = user.diplomas.all()
@@ -78,6 +80,7 @@ class SuitableJobs(generics.ListAPIView):
 class SuitableUsers(generics.RetrieveAPIView):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
     def suitable_users(self, request, *args, **kwargs):
         instance = self.get_object()
