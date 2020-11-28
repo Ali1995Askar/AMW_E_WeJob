@@ -10,6 +10,11 @@ from .forms import JobForm
 class CustomJobAdmin(admin.ModelAdmin):
 
     form = JobForm
+
+    def save_model(self, request, job, form, change):
+        job.company = request.user
+        job.save()
+
     ordering = ("date",)
     list_display = (
         "company",

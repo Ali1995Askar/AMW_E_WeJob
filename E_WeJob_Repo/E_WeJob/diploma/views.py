@@ -26,7 +26,7 @@ class DiplomaCreateView(generic.CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
     def get_success_url(self):
-        return reverse("diploma:detail", kwargs={"pk": self.object.pk})
+        return reverse("user:redirect")
 
 
 @method_decorator(login_required(), name="dispatch")
@@ -38,7 +38,7 @@ class DiplomaUpdateView(generic.UpdateView):
     template_name = "diploma/diploma_update.html"
 
     def get_success_url(self):
-        return reverse("diploma:detail", kwargs={"pk": self.get_object().pk})
+        return reverse("user:redirect")
 
 
 @method_decorator(login_required(), name="dispatch")
@@ -48,7 +48,7 @@ class DiplomaDeleteView(generic.DeleteView):
     model = Diploma
 
     def get_success_url(self):
-        return reverse("diploma:all")
+        return reverse("user:redirect")
 
 
 class DiplomaDetailView(generic.DetailView):

@@ -1,25 +1,43 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
+from django.contrib.auth.models import BaseUserManager
 
-class User(AbstractUser):
 
-    first_name = None
-    last_name = None
+class UserManager(BaseUserManager):
+    def create_superuser(self, username, password, **kwargs):
+        user = self.model(username=username, is_staff=True, is_superuser=True, **kwargs)
+        user.set_password(password)
+        user.save()
+        return user
+
+
+class User(AbstractUser, PermissionsMixin):
 
     COMPANY = "Company"
     CANDIDATE = "Candidate"
-
+    ADMIN = "Admin"
     USER_TYPES = (
+        (ADMIN, "Admin"),
         (CANDIDATE, "Candidate"),
-        (COMPANY, _("Company")),
+        (COMPANY, "Company"),
     )
 
+    first_name = None
+    last_name = None
+    email = None
+
+    is_staff = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
+    is_superuser = models.BooleanField(default=False)
     user_type = models.CharField(
         _("User type"), max_length=15, choices=USER_TYPES, default="", blank=True
     )
+
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["user_type"]
 
     class Meta(AbstractUser.Meta):
         verbose_name = _("user")
@@ -43,6 +61,8 @@ class User(AbstractUser):
     @property
     def type(self):
         return self.user_type
+
+    objects = UserManager()
 
 
 class CompanyProfile(models.Model):

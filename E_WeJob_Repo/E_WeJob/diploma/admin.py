@@ -9,7 +9,11 @@ from .forms import DiplomaForm
 class CustomDiplomaAdmin(admin.ModelAdmin):
 
     form = DiplomaForm
-    # ordering = ("requiredEducationLevel",)
+
+    def save_model(self, request, diploma, form, change):
+        diploma.user = request.user
+        diploma.save()
+
     list_display = (
         "user",
         "diplomaTitle",

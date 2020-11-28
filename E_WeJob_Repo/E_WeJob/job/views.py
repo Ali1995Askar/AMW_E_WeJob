@@ -84,9 +84,31 @@ class JobDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(JobDetailView, self).get_context_data(**kwargs)
         context["suitable_users"] = self.get_suitable_users()
-        # print(self.get_suitable_users())
 
         return context
+
+
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
+
+
+class CustomPageNumber(PageNumberPagination):
+    page_size = 4
+
+    def get_paginated_response(self, data):
+        return Response(
+            {
+                "current_page": self.page,
+                # "range": self.page,
+                "count": len(data),
+                # "countItemsOnPage": self.page_size,
+                # "lastPage": self.page.paginator.num_pages,
+                "current": self.page.number,
+                "next": self.get_next_link(),
+                "previous": self.get_previous_link(),
+                "results": data,
+            }
+        )
 
 
 class JobListView(viewsets.ReadOnlyModelViewSet):
@@ -100,6 +122,7 @@ class JobListView(viewsets.ReadOnlyModelViewSet):
     filter_class = JobFilter
     ordering_fields = ["requiredExperienceYears", "salary"]
     template_name = "job/job_list.html"
+    pagination_class = CustomPageNumber
 
 
 @method_decorator(login_required(), name="dispatch")

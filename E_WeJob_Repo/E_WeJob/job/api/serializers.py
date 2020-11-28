@@ -14,7 +14,7 @@ class JobSerializer(serializers.ModelSerializer):
 
     cName = serializers.SerializerMethodField("get_cName")
     company = UserSerializer(read_only=True)
-    requiredEducationLevel = DiplomaSerializer(read_only=True)
+    requiredEducationLevel = DiplomaSerializer()
 
     class Meta:
         model = Job

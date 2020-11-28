@@ -38,17 +38,7 @@ company-signup
                                     {% endif %}
                                 </div>
 
-                                <div class="form-group">
-                                    <label class="font-weight-700">{{form.email.label}} *</label>
-                                    {{form.email}}
-                                    {% if form.email.errors %}
-                                    {% for error in form.email.errors %}
-                                    <li>
-                                        <small class="form-text text-muted ">{{ error }}</small>
-                                    </li>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
+
                                 <div class="form-group">
                                     <label class="font-weight-700">{{form.password1.label}} *</label>
 

@@ -41,6 +41,10 @@ class Candidate(admin.StackedInline):
 
 
 class CustomMessageAdmin(admin.ModelAdmin):
+    def save_model(self, request, message, form, change):
+        message.user = request.user
+        message.save()
+
     form = MessageForm
     ordering = ("date",)
     list_display = (
@@ -75,8 +79,11 @@ class CustomUserAdmin(UserAdmin):
             return profile.fullName
 
     readonly_fields = ("user_type",)
-    list_display = ("Name", "user_type", "email")
-    list_display_links = ("Name", "email")
+    list_display = (
+        "Name",
+        "user_type",
+    )
+    list_display_links = ("Name",)
     list_filter = (
         "user_type",
         "is_staff",
@@ -84,7 +91,6 @@ class CustomUserAdmin(UserAdmin):
     )
 
     search_fields = (
-        "email",
         "CompanyProfile__cName",
         "CandidateProfile__fullName",
     )
@@ -95,7 +101,6 @@ class CustomUserAdmin(UserAdmin):
             {
                 "fields": (
                     "username",
-                    "email",
                     "is_superuser",
                     "is_staff",
                     "is_active",

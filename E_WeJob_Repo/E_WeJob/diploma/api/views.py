@@ -8,9 +8,13 @@ from ..models import Diploma
 
 class DiplomaViewSet(viewsets.ModelViewSet):
     paginator = None
-    permission_classes = (permissions.IsAuthenticated, IsDiplomaOwnerOrReadOnly)
+    permission_classes = (
+        permissions.IsAuthenticated,
+        IsCandidate,
+        IsDiplomaOwnerOrReadOnly,
+    )
     queryset = Diploma.objects.all()
     serializer_class = DiplomaSerializer
     # to do redirect to 404 not found
     def perform_create(self, serializer):
-        serializer.save(candidate=self.request.user)
+        serializer.save(user=self.request.user)

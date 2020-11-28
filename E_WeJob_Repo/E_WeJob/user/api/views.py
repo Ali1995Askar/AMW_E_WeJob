@@ -42,14 +42,13 @@ class UserLoginView(APIView):
     # to fo make post to get method
     def post(self, request, *args, **kwargs):
         user = authenticate(
-            username=request.POST.get("username"), password=request.POST.get("password")
+            username=request.data.get("username"), password=request.data.get("password")
         )
         if user:
             token, created = Token.objects.get_or_create(user=user)
             return Response(
                 {
                     "username": user.username,
-                    "email": user.email,
                     "user_type": user.user_type,
                     "token": token.key,
                 },

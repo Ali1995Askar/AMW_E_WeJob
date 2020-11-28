@@ -10,8 +10,6 @@ router = DefaultRouter()
 router.register("jobs", views.JobListView, basename="jobs")
 
 urlpatterns = [
-    # path("all/", views.JobListView.as_view({"get": "list"}), name="all"),
-    # path("all/", views.JobListView.as_view(), name="all"),
     path("create/", views.JobCreateView.as_view(), name="create"),
     path("update/<int:pk>", views.JobUpdateView.as_view(), name="update"),
     path("delete/<int:pk>", views.JobDeleteView.as_view(), name="delete"),

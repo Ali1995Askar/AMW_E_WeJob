@@ -7,8 +7,13 @@ user-detail
 {% include "partials/inner_page_banner.html" with title="My Profile"  root=user.username child="profile"%}
 <div class="content-block">
     <div class="section-full bg-white browse-job content-inner-2">
+        <div class="btn-add sticky-top">
+            <a href="{% url 'diploma:create' %}" class="radius-xl fa fa-plus-circle fa-3x"><span></span></a>
+        </div>
         <div class="container">
+
             <div class="row">
+
                 <div class="col-xl-9 col-lg-8">
                     <div class="post-job-bx">
                         <li>
@@ -37,10 +42,7 @@ user-detail
                                                     <li><i class="fa fa-mobile"></i>{{object.profile.tel}}</li>
 
                                                 </div>
-                                                <div>
-                                                    <li><i class="fa fa-envelope-open"></i>{{user.email}}</li>
 
-                                                </div>
                                             </div>
                                         </ul>
                                     </div>
@@ -56,7 +58,7 @@ user-detail
                                         {% endfor %}
                                     </div>
                                 </div>
-                                <a href="{% url 'job:my-jobs' user.username %}">
+                                <a href="{% url 'job:jobs-list'%}">
                                     <div class="d-flex">
                                         <div class="job-time mr-auto">
                                             <h5><i class="fa fa-check-circle"> {{suitable_job}} </i>Suitable Jobs</h5>

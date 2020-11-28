@@ -5,7 +5,6 @@ from django.forms import (
     Textarea,
     NumberInput,
     Select,
-    EmailField,
     CharField,
     PasswordInput,
 )
@@ -50,7 +49,7 @@ class UserCreationForm(forms.UserCreationForm):
 
     class Meta(forms.UserCreationForm.Meta):
         model = User
-        fields = ["username", "email", "password1", "password2"]
+        fields = ["username", "password1", "password2"]
 
         widgets = {
             "username": TextInput(
@@ -60,19 +59,11 @@ class UserCreationForm(forms.UserCreationForm):
                     "name": "dzName",
                 },
             ),
-            "email": TextInput(
-                attrs={
-                    "class": "form-control",
-                    "placeholder": "E-MAIL",
-                    "name": "dzName",
-                },
-            ),
         }
 
     error_message = forms.UserCreationForm.error_messages.update(
         {
             "duplicate_username": ("This username has already been taken."),
-            "duplicate_email": ("This email is already in use."),
         }
     )
 
@@ -85,16 +76,6 @@ class UserCreationForm(forms.UserCreationForm):
             return username
 
         raise ValidationError(self.error_messages["duplicate_username"])
-
-    def clean_email(self):
-        email = self.cleaned_data["email"]
-
-        try:
-            User.objects.get(email=email)
-        except User.DoesNotExist:
-            return email
-
-        raise ValidationError(self.error_messages["duplicate_email"])
 
 
 class CompanyProfileForm(ModelForm):
@@ -163,18 +144,9 @@ class MessageForm(ModelForm):
         )
         widgets = {
             "subject": TextInput(
-                attrs={
-                    "name": "dzName",
-                    "class": "form-control",
-                    "placeholder": "Subject ",
-                },
+                attrs={"class": "form-control", "placeholder": "subject"}
             ),
             "message": Textarea(
-                attrs={
-                    "name": "dzMessage",
-                    "class": "form-control",
-                    "placeholder": "Your Message...",
-                    "rows": "4",
-                },
+                attrs={"class": "form-control", "placeholder": "Message"}
             ),
         }
