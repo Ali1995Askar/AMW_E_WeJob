@@ -70,7 +70,6 @@ class SignupWizardSerializer(serializers.Serializer):
         user_data = validated_data.pop("user")
         user = User.objects.create(
             username=user_data["username"],
-            email=user_data["email"],
         )
         user.set_password(user_data["password"])
         return user
