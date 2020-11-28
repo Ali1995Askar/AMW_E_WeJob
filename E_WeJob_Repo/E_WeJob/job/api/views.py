@@ -18,12 +18,14 @@ from rest_framework.response import Response
 from .filters import JobFilter
 from rest_framework import status
 from rest_framework import permissions
+from django.utils.decorators import method_decorator
 
 from rest_framework import generics
 from django.contrib.auth import get_user_model
 
+from utils.decorators import is_candidate
 from utils.serializers import UserDetailsSerializer
-from utils.permissions import IsCompany
+from utils.permissions import IsCompany, IsCandidate
 from .serializers import JobSerializer
 from ..models import Job
 
@@ -48,6 +50,7 @@ class JobListCreateView(generics.ListCreateAPIView):
         serializer.save(company=self.request.user)
 
 
+@method_decorator(is_candidate, name="dispatch")
 class SuitableJobs(generics.ListAPIView):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
