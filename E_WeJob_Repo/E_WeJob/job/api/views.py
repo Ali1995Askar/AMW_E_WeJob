@@ -33,7 +33,7 @@ User = get_user_model()
 class JobListCreateView(generics.ListCreateAPIView):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
-    permission_classes = [IsCompany]
+    permission_classes = [permissions.IsAuthenticated, IsCompany]
     filter_backends = (
         django_filters.rest_framework.DjangoFilterBackend,
         filters.OrderingFilter,
