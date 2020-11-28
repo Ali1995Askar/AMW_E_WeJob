@@ -18,6 +18,9 @@ from job.api.serializers import JobSerializer
 from rest_framework import permissions, renderers, viewsets
 from job.api.filters import JobFilter
 
+from rest_framework.pagination import PageNumberPagination
+from rest_framework.response import Response
+
 
 @method_decorator(login_required(), name="dispatch")
 @method_decorator(is_company, name="dispatch")
@@ -86,10 +89,6 @@ class JobDetailView(generic.DetailView):
         context["suitable_users"] = self.get_suitable_users()
 
         return context
-
-
-from rest_framework.pagination import PageNumberPagination
-from rest_framework.response import Response
 
 
 class CustomPageNumber(PageNumberPagination):
