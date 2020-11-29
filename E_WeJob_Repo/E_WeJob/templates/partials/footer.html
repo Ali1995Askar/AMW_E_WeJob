@@ -1,85 +1,113 @@
 {% load static %}
 <footer class="site-footer">
-    <div class="footer-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-5 col-lg-4 col-md-12 col-sm-12">
-                    <div class="widget">
-                        <img src="{% static "images/logo-white.png" %}" width="180" class="m-b15" alt="" />
-                        <p class="text-capitalize m-b20">Find your Dream Job with E_WeJob just signup and you can start
-                            Search for jobs also if you are company and you need employees you can sign up and hire for
-                            jobs..</p>
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-5 col-lg-4 col-md-12 col-sm-12">
+          <div class="widget">
+            <img src="{% static "images/logo-white.png" %}" width="180"
+            class="m-b15" alt="" />
+            <p class="text-capitalize m-b20">
+              Find your Dream Job with E_WeJob just signup and you can start
+              Search for jobs also if you are company and you need employees you
+              can sign up and hire for jobs..
+            </p>
 
-                        <ul class="list-inline m-a0">
-                            <li><a href="#" class="site-button white facebook circle "><i
-                                        class="fa fa-facebook"></i></a></li>
-                            <li><a href="#" class="site-button white google-plus circle "><i
-                                        class="fa fa-google-plus"></i></a></li>
-                            <li><a href="#" class="site-button white linkedin circle "><i
-                                        class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#" class="site-button white instagram circle "><i
-                                        class="fa fa-instagram"></i></a></li>
-                            <li><a href="#" class="site-button white twitter circle "><i class="fa fa-twitter"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-5 col-lg-5 col-md-8 col-sm-8 col-12">
-                    <div class="widget border-0">
-                        <h5 class="m-b30 text-white">Frequently Asked Questions</h5>
-                        <ul class="list-2 list-line">
-                            <li>
-                                <h6>Services</h6>
-                            </li>
-                            <li>
-                                <h6>API</h6>
-                            </li>
-
-                            <li><a href="{% url 'job:create' %}">Post Job</a></li>
-                            <li><a href="{% url 'job_api:jobs' %}">Jobs</a></li>
-
-
-                            <li><a href="{% url 'job:jobs-list' %}">Brouse Jobs</a></li>
-                            <li><a href="{% url 'diploma_api:diplomas-list' %}">Diploms</a></li>
-
-
-                            <li><a href="{% url 'diploma:create' %}">Add Diploma</a></li>
-                            <li><a href="{% url 'user_api:user-login' %}">Login</a></li>
-
-                            <li><a href="{% url 'user:redirect' %}">Profile</a></li>
-                            <li><a href="{% url 'user_api:comapany-signup' %}">Company Signup</a></li>
-
-                            <li><a href="{% url 'admin:index' %}">
-                                    Admin</a></li>
-                            <li><a href="{% url 'user_api:candidate-signup' %}">Candidate Signup</a></li>
-
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-12">
-                    <div class="widget border-0">
-                        <h5 class="m-b30 text-white">Others</h5>
-                        <ul class="list-2 w10 list-line">
-                            <li><a href="{% url 'index' %}">home</a></li>
-                            <li><a href="{% url 'about-us' %}">About us</a></li>
-                            <li><a href="{% url 'contact-us' %}">Contact us</a></li>
-                            <li><a href="#">Privacy & Seurty</a></li>
-                            <li><a href="#">Terms of Serice</a></li>
-                            <li><a href="#">Support</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <ul class="list-inline m-a0">
+              <li>
+                <a href="#" class="site-button white facebook circle"
+                  ><i class="fa fa-facebook"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="site-button white google-plus circle"
+                  ><i class="fa fa-google-plus"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="site-button white linkedin circle"
+                  ><i class="fa fa-linkedin"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="site-button white instagram circle"
+                  ><i class="fa fa-instagram"></i
+                ></a>
+              </li>
+              <li>
+                <a href="#" class="site-button white twitter circle"
+                  ><i class="fa fa-twitter"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
         </div>
-    </div>
-    <!-- footer bottom part -->
-    <div class="footer-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center"><span><a target="_blank"
-                            href="https://www.templateshub.net">SVU-MWS-AMW-S20-C3</a></span></div>
-            </div>
+        <div class="col-xl-5 col-lg-5 col-md-8 col-sm-8 col-12">
+          <div class="widget border-0">
+            <h5 class="m-b30 text-white">Frequently Asked Questions</h5>
+            <ul class="list-2 list-line">
+              <li>
+                <h6>Services</h6>
+              </li>
+              <li>
+                <h6>API</h6>
+              </li>
+
+              <li><a href="{% url 'job:create' %}">Post Job</a></li>
+              <li><a href="{% url 'job_api:jobs' %}">Jobs</a></li>
+
+              <li><a href="{% url 'job:jobs-list' %}">Browse Jobs</a></li>
+              <li>
+                <a href="{% url 'diploma_api:diplomas-list' %}">Diploms</a>
+              </li>
+
+              <li><a href="{% url 'diploma:create' %}">Add Diploma</a></li>
+              <li><a href="{% url 'user_api:user-login' %}">Login</a></li>
+
+              <li><a href="{% url 'user:redirect' %}">Profile</a></li>
+              <li>
+                <a href="{% url 'user_api:comapany-signup' %}"
+                  >Company Signup</a
+                >
+              </li>
+
+              <li><a href="{% url 'admin:index' %}"> Admin</a></li>
+              <li>
+                <a href="{% url 'user_api:candidate-signup' %}"
+                  >Candidate Signup</a
+                >
+              </li>
+            </ul>
+          </div>
         </div>
+        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-4 col-12">
+          <div class="widget border-0">
+            <h5 class="m-b30 text-white">Others</h5>
+            <ul class="list-2 w10 list-line">
+              <li><a href="{% url 'index' %}">home</a></li>
+              <li><a href="{% url 'about-us' %}">About us</a></li>
+              <li><a href="{% url 'contact-us' %}">Contact us</a></li>
+              <li><a href="#">Privacy & Seurty</a></li>
+              <li><a href="#">Terms of Serice</a></li>
+              <li><a href="#">Support</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  <!-- footer bottom part -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <span
+            ><a target="_blank" href="https://www.templateshub.net"
+              >SVU-MWS-AMW-S20-C4</a
+            ></span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>

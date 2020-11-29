@@ -1,78 +1,115 @@
 {% load static %}
 <header class="site-header mo-left header fullwidth">
-    <!-- main header -->
-    <div class="sticky-header main-bar-wraper navbar-expand-lg">
-        <div class="main-bar clearfix">
-            <div class="container clearfix">
-                <!-- website logo -->
-                <div class="logo-header mostion">
-                    <a href="{% url 'index' %}"><img src="{% static 'images/logo.png' %}" class="logo" alt=""></a>
-                </div>
-                <!-- nav toggle button -->
-                <!-- nav toggle button -->
-                <button class="navbar-toggler collapsed navicon justify-content-end" type="button"
-                    data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <!-- main nav -->
-                <div class="header-nav navbar-collapse collapse justify-content-start" id="navbarNavDropdown">
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <a href="#">For Candidates <i class="fa fa-chevron-down"></i></a>
-                            <ul class="sub-menu">
-                                <li><a href="{% url 'job:jobs-list' %}" class="dez-page">Brouse Jobs</a></li>
-                                <li><a href="{% url 'diploma:create' %}" class="dez-page">add Diploma</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">For Companies <i class="fa fa-chevron-down"></i></a>
-                            <ul class="sub-menu">
-                                <li><a href="{% url 'job:create' %}" class="dez-page">Post a Job</a></li>
-                                <li><a href="{% url 'user:redirect' %}" class="dez-page">My Jobs</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="{% url 'contact-us' %}">Contact us</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'about-us' %}">About us</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                {% if user.is_authenticated %}
-                                {{  user.username }}
-                                {% else %}
-                                Account
-                                {% endif %}
-                                <i class="fa fa-user"></i></a>
-                            <ul class="sub-menu">
-                                {% if user.is_authenticated %}
-                                <li><a href=" {% url 'user:redirect' %}" class="dez-page">My profile</a></li>
-                                {% else %}
-                                <li><a href="{% url 'user:company-sign-up' %}" class="dez-page"> Company Signup</a></li>
-                                <li><a href="{% url 'user:candidate-sign-up' %}" class="dez-page"> Candidate Signup</a>
-                                </li>
-                                {% endif %}
-
-                                {% if user.is_authenticated %}
-                                <li>
-                                    <a href="{% url 'user:logout' %}"><i class="fa fa-lock"></i>
-                                        logout</a>
-                                </li>
-                                {% else %}
-                                <li>
-                                    <a href="{% url 'user:login' %}"><i class="fa fa-unlock"></i> login</a>
-                                </li>
-                                {% endif %}
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+  <!-- main header -->
+  <div class="sticky-header main-bar-wraper navbar-expand-lg">
+    <div class="main-bar clearfix">
+      <div class="container clearfix">
+        <!-- website logo -->
+        <div class="logo-header mostion">
+          <a href="{% url 'index' %}"
+            ><img src="{% static 'images/logo.png' %}" class="logo" alt=""
+          /></a>
         </div>
+        <!-- nav toggle button -->
+        <!-- nav toggle button -->
+        <button
+          class="navbar-toggler collapsed navicon justify-content-end"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <!-- main nav -->
+        <div
+          class="header-nav navbar-collapse collapse justify-content-start"
+          id="navbarNavDropdown"
+        >
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="#">For Candidates <i class="fa fa-chevron-down"></i></a>
+              <ul class="sub-menu">
+                <li>
+                  <a href="{% url 'job:jobs-list' %}" class="dez-page"
+                    >Browse Jobs</a
+                  >
+                </li>
+                <li>
+                  <a href="{% url 'diploma:create' %}" class="dez-page"
+                    >add Diploma</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">For Companies <i class="fa fa-chevron-down"></i></a>
+              <ul class="sub-menu">
+                <li>
+                  <a href="{% url 'job:create' %}" class="dez-page"
+                    >Post a Job</a
+                  >
+                </li>
+                <li>
+                  <a href="{% url 'user:redirect' %}" class="dez-page"
+                    >My Jobs</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="{% url 'contact-us' %}">Contact us</a>
+            </li>
+            <li>
+              <a href="{% url 'about-us' %}">About us</a>
+            </li>
+            <li>
+              <a href="#">
+                {% if user.is_authenticated %} {{ user.username }} {% else %}
+                Account {% endif %}
+                <i class="fa fa-user"></i
+              ></a>
+              <ul class="sub-menu">
+                {% if user.is_authenticated %}
+                <li>
+                  <a href=" {% url 'user:redirect' %}" class="dez-page"
+                    >My profile</a
+                  >
+                </li>
+                {% else %}
+                <li>
+                  <a href="{% url 'user:company-sign-up' %}" class="dez-page">
+                    Company Signup</a
+                  >
+                </li>
+                <li>
+                  <a href="{% url 'user:candidate-sign-up' %}" class="dez-page">
+                    Candidate Signup</a
+                  >
+                </li>
+                {% endif %} {% if user.is_authenticated %}
+                <li>
+                  <a href="{% url 'user:logout' %}"
+                    ><i class="fa fa-lock"></i> logout</a
+                  >
+                </li>
+                {% else %}
+                <li>
+                  <a href="{% url 'user:login' %}"
+                    ><i class="fa fa-unlock"></i> login</a
+                  >
+                </li>
+                {% endif %}
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <!-- main header END -->
+  </div>
+  <!-- main header END -->
 </header>
