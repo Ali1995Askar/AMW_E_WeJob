@@ -8,6 +8,6 @@ class DiplomaForm(forms.ModelForm):
         fields = ("diplomaTitle",)
         widgets = {
             "diplomaTitle": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Diploma Ttile "},
+                attrs={"class": "form-control", "placeholder": "Diploma Title "},
             ),
         }
