@@ -1,127 +1,127 @@
-{% extends "base.html" %}
-{% load static %}
-{% block title %}
-candidate-signup
-{% endblock %}
-{% block content %}
-<h1>company signip</h1>
+{% extends "base.html" %} {% load static %} {% block title %} candidate-signup
+{% endblock %} {% block content %}
 
 <div class="page-content bg-white">
-    {% include "partials/inner_page_banner.html" with title="Candidate Register" root="home" child="candidate signup"%}
-    <!-- inner page banner END -->
-    <!-- contact area -->
-    <div class="section-full content-inner shop-account">
-        <!-- Product -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h3 class="font-weight-700 m-t0 m-b20">Create Candidate Account</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 m-b30">
-                    <div class="p-a30 border-1  max-w500 m-auto">
-                        <div class="tab-content">
-                            <form id="login" class="tab-pane active" method="post">
-                                {% csrf_token %}
-                                <h4 class="font-weight-700">Account Information</h4>
-                                <p class="font-weight-600">please Enter your account information</p>
-                                <div class="form-group">
-                                    <label class="font-weight-700">{{form.username.label}} *</label>
-                                    {{form.username}}
-                                    {% if form.username.errors %}
-                                    {% for error in form.username.errors %}
-                                    <li>
-                                        <small class="form-text text-muted ">{{ error }}</small>
-                                    </li>
-                                    {% endfor %}
-                                    {% endif %}
-
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label class="font-weight-700">{{form.password1.label}} *</label>
-
-                                    {{form.password1}}
-                                    {% if form.password1.errors %}
-                                    {% for error in form.password1.errors %}
-                                    <li>
-                                        <small class="form-text text-muted ">{{ error }}</small>
-                                    </li>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="font-weight-700">{{form.password2.label}} *</label>
-
-                                    {{form.password2}}
-                                    {% if form.password2.errors %}
-                                    {% for error in form.password2.errors %}
-                                    <li>
-                                        <small class="form-text text-muted ">{{ error }}</small>
-                                    </li>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-
-                                <h4 class="font-weight-700">Candidate Information</h4>
-                                <p class="font-weight-600">please Complete information</p>
-
-                                <div class="form-group">
-                                    <label class="font-weight-700">{{candidate_profile_form.fullName.label}} *</label>
-
-                                    {{candidate_profile_form.fullName}}
-                                    {% if candidate_profile_form.fullName.errors %}
-                                    {% for error in candidate_profile_form.fullName.errors %}
-                                    <li>
-                                        <small class="form-text text-muted ">{{ error }}</small>
-                                    </li>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-                                <div class="form-group">
-                                    <label class="font-weight-700">{{candidate_profile_form.tel.label}} *</label>
-
-                                    {{candidate_profile_form.tel}}
-
-                                    {% if candidate_profile_form.tel.errors %}
-                                    {% for error in candidate_profile_form.tel.errors %}
-                                    <li>
-                                        <small class="form-text text-muted ">{{ error }}</small>
-                                    </li>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-                                <div class="form-group">
-                                    <label class="font-weight-700">{{candidate_profile_form.experienceYears.label}}
-                                        *</label>
-
-                                    {{candidate_profile_form.experienceYears}}
-                                    {% if candidate_profile_form.experienceYears.errors %}
-                                    {% for error in candidate_profile_form.experienceYears.errors %}
-                                    <li>
-                                        <small class="form-text text-muted ">{{ error }}</small>
-                                    </li>
-                                    {% endfor %}
-                                    {% endif %}
-                                </div>
-
-                                <div class="text-left">
-                                    <button type="submit"
-                                        class="site-button button-lg outline outline-2">Signup</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+  {% include "partials/inner_page_banner.html" with title="Candidate Register"
+  root="home" child="candidate signup"%}
+  <!-- inner page banner END -->
+  <!-- contact area -->
+  <div class="section-full content-inner shop-account">
+    <!-- Product -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h3 class="font-weight-700 m-t0 m-b20">Create Candidate Account</h3>
         </div>
-        <!-- Product END -->
-    </div>
-    <!-- contact area  END -->
-</div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 m-b30">
+          <div class="p-a30 border-1 max-w500 m-auto">
+            <div class="tab-content">
+              <form id="login" class="tab-pane active" method="post">
+                {% csrf_token %}
+                <h4 class="font-weight-700">Account Information</h4>
+                <p class="font-weight-600">
+                  please Enter your account information
+                </p>
+                <div class="form-group">
+                  <label class="font-weight-700"
+                    >{{form.username.label}} *</label
+                  >
+                  {{form.username}} {% if form.username.errors %} {% for error
+                  in form.username.errors %}
+                  <li>
+                    <small class="form-text text-muted">{{ error }}</small>
+                  </li>
+                  {% endfor %} {% endif %}
+                </div>
 
+                <div class="form-group">
+                  <label class="font-weight-700"
+                    >{{form.password1.label}} *</label
+                  >
+
+                  {{form.password1}} {% if form.password1.errors %} {% for error
+                  in form.password1.errors %}
+                  <li>
+                    <small class="form-text text-muted">{{ error }}</small>
+                  </li>
+                  {% endfor %} {% endif %}
+                </div>
+
+                <div class="form-group">
+                  <label class="font-weight-700"
+                    >{{form.password2.label}} *</label
+                  >
+
+                  {{form.password2}} {% if form.password2.errors %} {% for error
+                  in form.password2.errors %}
+                  <li>
+                    <small class="form-text text-muted">{{ error }}</small>
+                  </li>
+                  {% endfor %} {% endif %}
+                </div>
+
+                <h4 class="font-weight-700">Candidate Information</h4>
+                <p class="font-weight-600">please Complete information</p>
+
+                <div class="form-group">
+                  <label class="font-weight-700"
+                    >{{candidate_profile_form.fullName.label}} *</label
+                  >
+
+                  {{candidate_profile_form.fullName}} {% if
+                  candidate_profile_form.fullName.errors %} {% for error in
+                  candidate_profile_form.fullName.errors %}
+                  <li>
+                    <small class="form-text text-muted">{{ error }}</small>
+                  </li>
+                  {% endfor %} {% endif %}
+                </div>
+                <div class="form-group">
+                  <label class="font-weight-700"
+                    >{{candidate_profile_form.tel.label}} *</label
+                  >
+
+                  {{candidate_profile_form.tel}} {% if
+                  candidate_profile_form.tel.errors %} {% for error in
+                  candidate_profile_form.tel.errors %}
+                  <li>
+                    <small class="form-text text-muted">{{ error }}</small>
+                  </li>
+                  {% endfor %} {% endif %}
+                </div>
+                <div class="form-group">
+                  <label class="font-weight-700"
+                    >{{candidate_profile_form.experienceYears.label}} *</label
+                  >
+
+                  {{candidate_profile_form.experienceYears}} {% if
+                  candidate_profile_form.experienceYears.errors %} {% for error
+                  in candidate_profile_form.experienceYears.errors %}
+                  <li>
+                    <small class="form-text text-muted">{{ error }}</small>
+                  </li>
+                  {% endfor %} {% endif %}
+                </div>
+
+                <div class="text-left">
+                  <button
+                    type="submit"
+                    class="site-button button-lg outline outline-2"
+                  >
+                    Signup
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Product END -->
+  </div>
+  <!-- contact area  END -->
+</div>
 
 {% endblock content %}
