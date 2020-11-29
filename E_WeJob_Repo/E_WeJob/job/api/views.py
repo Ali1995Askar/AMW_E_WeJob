@@ -50,11 +50,10 @@ class JobListCreateView(generics.ListCreateAPIView):
         serializer.save(company=self.request.user)
 
 
-@method_decorator(is_candidate, name="dispatch")
 class SuitableJobs(generics.ListAPIView):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated, IsCandidate]
 
     def get_suitable_Jobs(self, request):
         user = self.request.user
